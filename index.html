@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CM Restauração de Móveis</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="container">
+          <div class="logo">
+            <h2>CM RESTAURAÇÃO DE MÓVEIS</h2>
+          </div>
+          <ul class="nav-menu">
+            <li><a href="#home">Início</a></li>
+            <li><a href="#highlights">Destaques</a></li>
+            <li><a href="#services">Serviços</a></li>
+            <li><a href="#about">Sobre</a></li>
+            <li><a href="#contact">Contato</a></li>
+          </ul>
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="container">
+          <div class="hero-content">
+            <h1>Restauração Profissional de Móveis</h1>
+            <p>
+              Especialista em restauração, montagem e colocação de móveis com
+              qualidade e precisão
+            </p>
+            <div class="hero-buttons">
+              <a href="#highlights" class="btn-primary">Ver Destaques</a>
+              <a href="#contact" class="btn-secondary">Entre em Contato</a>
+            </div>
+          </div>
+          <div class="hero-video">
+            <div class="video-container">
+              <iframe
+                src="https://www.youtube.com/embed/KTV9ZMeIYkw?si=uyJjebn9JnLGVHSL&autoplay=1&mute=1&loop=1&playlist=KTV9ZMeIYkw"
+                title="CM Restauração - Nossos Serviços"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              >
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="highlights" class="highlights">
+        <div class="container">
+          <h2>Produtos em Destaque</h2>
+          <div class="highlights-grid">
+            <div class="highlight-card featured">
+              <div class="highlight-image">
+                <i class="fas fa-home"></i>
+                <span class="badge">Mais Vendido</span>
+              </div>
+              <h3>Casinha de Boneca Grande</h3>
+              <p>
+                Casinha de boneca personalizada com acabamento premium. Escolha
+                cores, janelas, portas e muito mais!
+              </p>
+              <div class="price">A partir de R$ 299,90</div>
+              <button
+                class="btn-primary"
+                onclick="openMarketplace('casinha-boneca')"
+              >
+                Personalizar Agora
+              </button>
+            </div>
+            <div class="highlight-card">
+              <div class="highlight-image">
+                <i class="fas fa-chair"></i>
+              </div>
+              <h3>Restauração Premium</h3>
+              <p>Renovação completa de móveis antigos com verniz especial</p>
+              <div class="price">Consulte preço</div>
+              <button
+                class="btn-secondary"
+                onclick="openContact('restauracao')"
+              >
+                Solicitar Orçamento
+              </button>
+            </div>
+            <div class="highlight-card">
+              <div class="highlight-image">
+                <i class="fas fa-hammer"></i>
+              </div>
+              <h3>Montagem Express</h3>
+              <p>Montagem rápida e segura de móveis novos</p>
+              <div class="price">A partir de R$ 50,00</div>
+              <button class="btn-secondary" onclick="openContact('montagem')">
+                Agendar Serviço
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="services">
+        <div class="container">
+          <h2>Nossos Serviços</h2>
+          <div class="services-grid">
+            <div class="service-card">
+              <i class="fas fa-screwdriver-wrench"></i>
+              <h3>Desmontagem/Montagem</h3>
+              <p>
+                Serviços especializados de desmontagem e montagem de móveis com
+                cuidado e precisão
+              </p>
+            </div>
+            <div class="service-card">
+              <i class="fas fa-brush"></i>
+              <h3>Restauração com Verniz</h3>
+              <p>
+                Restauração completa de móveis com aplicação de verniz para
+                renovar e proteger
+              </p>
+            </div>
+            <div class="service-card">
+              <i class="fas fa-cog"></i>
+              <h3>Troca de Peças</h3>
+              <p>
+                Substituição de dobradiças, corrediças, puxadores e outros itens
+              </p>
+            </div>
+            <div class="service-card">
+              <i class="fas fa-paint-roller"></i>
+              <h3>Pinturas</h3>
+              <p>Pinturas de portas, janelas e pergolados de madeira</p>
+            </div>
+            <div class="service-card">
+              <i class="fas fa-home"></i>
+              <h3>Colocação</h3>
+              <p>
+                Instalação de varal, cortinas, persianas, quadros e prateleiras
+              </p>
+            </div>
+            <div class="service-card">
+              <i class="fas fa-ruler"></i>
+              <h3>Prateleiras sob Medida</h3>
+              <p>
+                Fabricação e instalação de prateleiras personalizadas conforme
+                suas necessidades
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="marketplace" class="marketplace" style="display: none">
+        <div class="container">
+          <div class="marketplace-header">
+            <button class="back-btn" onclick="closeMarketplace()">
+              <i class="fas fa-arrow-left"></i> Voltar
+            </button>
+            <h2>Personalize sua Casinha de Boneca</h2>
+          </div>
+
+          <div class="marketplace-content">
+            <div class="product-gallery">
+              <div class="main-image">
+                <img
+                  id="mainImage"
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2Y4ZjlmYSIvPgogIDx0ZXh0IHg9IjIwMCIgeT0iMTUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNhc2luaGEgZGUgQm9uZWNhPC90ZXh0Pgo8L3N2Zz4="
+                  alt="Casinha de Boneca"
+                />
+              </div>
+              <div class="thumbnail-gallery">
+                <img
+                  class="thumbnail active"
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y4ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GcmVudGU8L3RleHQ+Cjwvc3ZnPg=="
+                  alt="Frente"
+                  onclick="changeMainImage(this)"
+                />
+                <img
+                  class="thumbnail"
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y4ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MYXR1cmFsPC90ZXh0Pgo8L3N2Zz4="
+                  alt="Lateral"
+                  onclick="changeMainImage(this)"
+                />
+                <img
+                  class="thumbnail"
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y4ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5JbnRlcmlvcjwvdGV4dD4KICA8L3N2Zz4="
+                  alt="Interior"
+                  onclick="changeMainImage(this)"
+                />
+                <img
+                  class="thumbnail"
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y4ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5EZXRhbGhlczwvdGV4dD4KICA8L3N2Zz4="
+                  alt="Detalhes"
+                  onclick="changeMainImage(this)"
+                />
+              </div>
+            </div>
+
+            <div class="customization-panel">
+              <h3>Personalize sua Casinha</h3>
+
+              <div class="option-group">
+                <label>Tamanho:</label>
+                <div class="option-buttons">
+                  <button
+                    class="option-btn active"
+                    data-option="size"
+                    data-value="pequena"
+                    data-price="299"
+                  >
+                    Pequena (50x40cm) - R$ 299
+                  </button>
+                  <button
+                    class="option-btn"
+                    data-option="size"
+                    data-value="media"
+                    data-price="399"
+                  >
+                    Média (70x50cm) - R$ 399
+                  </button>
+                  <button
+                    class="option-btn"
+                    data-option="size"
+                    data-value="grande"
+                    data-price="499"
+                  >
+                    Grande (90x60cm) - R$ 499
+                  </button>
+                </div>
+              </div>
+
+              <div class="option-group">
+                <label>Cor Principal:</label>
+                <div class="color-options">
+                  <div
+                    class="color-option active"
+                    data-option="color"
+                    data-value="rosa"
+                    style="background: #ff69b4"
+                  ></div>
+                  <div
+                    class="color-option"
+                    data-option="color"
+                    data-value="azul"
+                    style="background: #4169e1"
+                  ></div>
+                  <div
+                    class="color-option"
+                    data-option="color"
+                    data-value="amarela"
+                    style="background: #ffd700"
+                  ></div>
+                  <div
+                    class="color-option"
+                    data-option="color"
+                    data-value="branca"
+                    style="background: #ffffff; border: 2px solid #ddd"
+                  ></div>
+                  <div
+                    class="color-option"
+                    data-option="color"
+                    data-value="madeira"
+                    style="background: #8b4513"
+                  ></div>
+                </div>
+              </div>
+
+              <div class="option-group">
+                <label>Tipo de Janela:</label>
+                <div class="option-buttons">
+                  <button
+                    class="option-btn active"
+                    data-option="window"
+                    data-value="simples"
+                  >
+                    Simples
+                  </button>
+                  <button
+                    class="option-btn"
+                    data-option="window"
+                    data-value="florida"
+                  >
+                    Florida
+                  </button>
+                  <button
+                    class="option-btn"
+                    data-option="window"
+                    data-value="veneziana"
+                  >
+                    Veneziana
+                  </button>
+                </div>
+              </div>
+
+              <div class="option-group">
+                <label>Tipo de Porta:</label>
+                <div class="option-buttons">
+                  <button
+                    class="option-btn active"
+                    data-option="door"
+                    data-value="simples"
+                  >
+                    Simples
+                  </button>
+                  <button
+                    class="option-btn"
+                    data-option="door"
+                    data-value="dupla"
+                  >
+                    Dupla
+                  </button>
+                  <button
+                    class="option-btn"
+                    data-option="door"
+                    data-value="vitrô"
+                  >
+                    Com Vitrô
+                  </button>
+                </div>
+              </div>
+
+              <div class="option-group">
+                <label>Extras:</label>
+                <div class="checkbox-options">
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      data-option="extra"
+                      data-value="varanda"
+                      data-price="50"
+                    />
+                    <span>Varanda (+R$ 50)</span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      data-option="extra"
+                      data-value="jardim"
+                      data-price="30"
+                    />
+                    <span>Jardim (+R$ 30)</span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      data-option="extra"
+                      data-value="cerca"
+                      data-price="40"
+                    />
+                    <span>Cercadinho (+R$ 40)</span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      data-option="extra"
+                      data-value="luz"
+                      data-price="80"
+                    />
+                    <span>Kit Iluminação LED (+R$ 80)</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="price-summary">
+                <div class="total-price">
+                  Total: R$ <span id="totalPrice">299</span>
+                </div>
+                <button
+                  class="btn-primary btn-large"
+                  onclick="finalizePurchase()"
+                >
+                  <i class="fab fa-whatsapp"></i>
+                  Finalizar Pedido
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="about">
+        <div class="container">
+          <div class="about-content">
+            <h2>Sobre a CM Restauração</h2>
+            <p>
+              Com experiência e dedicação, oferecemos serviços completos de
+              restauração e montagem de móveis. Nossa missão é renovar seus
+              móveis com qualidade profissional e atendimento personalizado.
+            </p>
+            <div class="features">
+              <div class="feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Qualidade Garantida</span>
+              </div>
+              <div class="feature">
+                <i class="fas fa-clock"></i>
+                <span>Pontualidade</span>
+              </div>
+              <div class="feature">
+                <i class="fas fa-dollar-sign"></i>
+                <span>Preços Justos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="container">
+          <h2>Entre em Contato</h2>
+          <div class="contact-content">
+            <div class="contact-info">
+              <div class="contact-item clickable">
+                <i class="fab fa-whatsapp"></i>
+                <div>
+                  <h3>WhatsApp</h3>
+                  <p>(43) 9.9980-9090</p>
+                  <span>Cláudio Michelato</span>
+                  <small>👆 Clique para conversar</small>
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <h3>Atendimento</h3>
+                  <p>Em Andirá e cidades vizinhas (frete a cobrar)</p>
+                </div>
+              </div>
+            </div>
+            <div class="contact-form">
+              <form id="contactForm">
+                <input type="text" placeholder="Seu nome" required />
+                <input type="tel" placeholder="Seu telefone" required />
+                <textarea
+                  placeholder="Descreva o serviço que precisa"
+                  rows="5"
+                  required
+                ></textarea>
+                <button type="submit" class="btn-primary">
+                  Enviar Mensagem
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>
+          &copy; 2025 CM Restauração de Móveis. Todos os direitos reservados.
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
