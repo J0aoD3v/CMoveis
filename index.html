@@ -9,6 +9,13 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico">
   </head>
   <body>
     <header>
@@ -76,7 +83,7 @@
                 Casinha de boneca personalizada com acabamento premium. Escolha
                 cores, janelas, portas e muito mais!
               </p>
-              <div class="price">A partir de R$ 299,90</div>
+              <div class="price">A partir de R$ 1.800,00</div>
               <button
                 class="btn-primary"
                 onclick="openMarketplace('casinha-boneca')"
@@ -88,7 +95,7 @@
               <div class="highlight-image">
                 <i class="fas fa-chair"></i>
               </div>
-              <h3>Restauração Premium</h3>
+              <h3>Restauração</h3>
               <p>Renovação completa de móveis antigos com verniz especial</p>
               <div class="price">Consulte preço</div>
               <button
@@ -102,11 +109,25 @@
               <div class="highlight-image">
                 <i class="fas fa-hammer"></i>
               </div>
-              <h3>Montagem Express</h3>
+              <h3>Montagem</h3>
               <p>Montagem rápida e segura de móveis novos</p>
               <div class="price">A partir de R$ 50,00</div>
               <button class="btn-secondary" onclick="openContact('montagem')">
                 Agendar Serviço
+              </button>
+            </div>
+            <div class="highlight-card">
+              <div class="highlight-image">
+                <i class="fas fa-tools"></i>
+              </div>
+              <h3>Outros Serviços</h3>
+              <p>
+                Troca de peças, pinturas, colocação, prateleiras sob medida e
+                mais!
+              </p>
+              <div class="price">Consulte preço</div>
+              <button class="btn-secondary" onclick="openContact('outros')">
+                Solicitar Orçamento
               </button>
             </div>
           </div>
@@ -178,32 +199,32 @@
               <div class="main-image">
                 <img
                   id="mainImage"
-                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2Y4ZjlmYSIvPgogIDx0ZXh0IHg9IjIwMCIgeT0iMTUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNhc2luaGEgZGUgQm9uZWNhPC90ZXh0Pgo8L3N2Zz4="
+                  src="img/frente.jpg"
                   alt="Casinha de Boneca"
                 />
               </div>
               <div class="thumbnail-gallery">
                 <img
                   class="thumbnail active"
-                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y4ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GcmVudGU8L3RleHQ+Cjwvc3ZnPg=="
+                  src="img/frente.jpg"
                   alt="Frente"
                   onclick="changeMainImage(this)"
                 />
                 <img
                   class="thumbnail"
-                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y4ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MYXR1cmFsPC90ZXh0Pgo8L3N2Zz4="
+                  src="img/lateral.jpg"
                   alt="Lateral"
                   onclick="changeMainImage(this)"
                 />
                 <img
                   class="thumbnail"
-                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y4ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5JbnRlcmlvcjwvdGV4dD4KICA8L3N2Zz4="
+                  src="img/interior.jpg"
                   alt="Interior"
                   onclick="changeMainImage(this)"
                 />
                 <img
                   class="thumbnail"
-                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y4ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5EZXRhbGhlczwvdGV4dD4KICA8L3N2Zz4="
+                  src="img/detalhes.jpg"
                   alt="Detalhes"
                   onclick="changeMainImage(this)"
                 />
@@ -215,67 +236,484 @@
 
               <div class="option-group">
                 <label>Tamanho:</label>
-                <div class="option-buttons">
-                  <button
-                    class="option-btn active"
-                    data-option="size"
-                    data-value="pequena"
-                    data-price="299"
+                <div class="size-selector">
+                  <div class="size-presets">
+                    <div class="option-buttons">
+                      <button
+                        class="option-btn active"
+                        data-option="size"
+                        data-value="pequena"
+                        data-price="1800"
+                        data-price-varanda="2200"
+                      >
+                        <div class="size-details">
+                          <strong
+                            >Pequena -
+                            <span class="price-display">R$ 1.800</span></strong
+                          >
+                          <div class="dimensions">
+                            <span>🏠 Área Útil: 1,20m × 1,20m</span>
+                            <span class="varanda-info">📏 Altura: 1,80m</span>
+                          </div>
+                          <div class="varanda-toggle-inline">
+                            <div class="varanda-checkbox-small">
+                              <span class="varanda-label"
+                                >Incluir Varanda?</span
+                              >
+                              <div class="checkbox-varanda">
+                                <div class="checkbox-area">
+                                  <input
+                                    type="checkbox"
+                                    data-size="pequena"
+                                    onchange="toggleVarandaInline(this)"
+                                  />
+                                </div>
+                                <div class="varanda-price">+R$ 400</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </button>
+                      <button
+                        class="option-btn"
+                        data-option="size"
+                        data-value="media"
+                        data-price="2400"
+                        data-price-varanda="2800"
+                      >
+                        <div class="size-details">
+                          <strong
+                            >Média -
+                            <span class="price-display">R$ 2.400</span></strong
+                          >
+                          <div class="dimensions">
+                            <span>🏠 Área Útil: 1,40m × 1,40m</span>
+                            <span class="varanda-info">📏 Altura: 2,00m</span>
+                          </div>
+                          <div class="varanda-toggle-inline">
+                            <div class="varanda-checkbox-small">
+                              <span class="varanda-label"
+                                >Incluir Varanda?</span
+                              >
+                              <div class="checkbox-varanda">
+                                <div class="checkbox-area">
+                                  <input
+                                    type="checkbox"
+                                    data-size="media"
+                                    onchange="toggleVarandaInline(this)"
+                                  />
+                                </div>
+                                <div class="varanda-price">+R$ 400</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </button>
+                      <button
+                        class="option-btn"
+                        data-option="size"
+                        data-value="grande"
+                        data-price="3100"
+                        data-price-varanda="3500"
+                      >
+                        <div class="size-details">
+                          <strong
+                            >Grande -
+                            <span class="price-display">R$ 3.100</span></strong
+                          >
+                          <div class="dimensions">
+                            <span>🏠 Área Útil: 1,60m × 1,60m</span>
+                            <span class="varanda-info">📏 Altura: 2,00m</span>
+                          </div>
+                          <div class="varanda-toggle-inline">
+                            <div class="varanda-checkbox-small">
+                              <span class="varanda-label"
+                                >Incluir Varanda?</span
+                              >
+                              <div class="checkbox-varanda">
+                                <div class="checkbox-area">
+                                  <input
+                                    type="checkbox"
+                                    data-size="grande"
+                                    onchange="toggleVarandaInline(this)"
+                                  />
+                                </div>
+                                <div class="varanda-price">+R$ 400</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </button>
+                      <button
+                        class="option-btn"
+                        data-option="size"
+                        data-value="custom"
+                        data-price="0"
+                      >
+                        <div class="size-details">
+                          <strong>Personalizado</strong>
+                          <div class="dimensions">
+                            <span>📐 Defina suas medidas</span>
+                            <span>💰 Preço sob consulta</span>
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div
+                    class="custom-size-panel"
+                    id="customSizePanel"
+                    style="display: none"
                   >
-                    Pequena (50x40cm) - R$ 299
-                  </button>
-                  <button
-                    class="option-btn"
-                    data-option="size"
-                    data-value="media"
-                    data-price="399"
-                  >
-                    Média (70x50cm) - R$ 399
-                  </button>
-                  <button
-                    class="option-btn"
-                    data-option="size"
-                    data-value="grande"
-                    data-price="499"
-                  >
-                    Grande (90x60cm) - R$ 499
-                  </button>
+                    <h4>Dimensões Personalizadas</h4>
+                    <div class="custom-dimensions">
+                      <div class="dimension-group">
+                        <label>Largura da Área Útil (m):</label>
+                        <input
+                          type="number"
+                          id="customWidth"
+                          min="0.8"
+                          max="3.0"
+                          step="0.1"
+                          value="1.20"
+                        />
+                      </div>
+                      <div class="dimension-group">
+                        <label>Comprimento da Área Útil (m):</label>
+                        <input
+                          type="number"
+                          id="customLength"
+                          min="0.8"
+                          max="3.0"
+                          step="0.1"
+                          value="1.20"
+                        />
+                      </div>
+                      <div class="dimension-group">
+                        <label>Altura (m):</label>
+                        <input
+                          type="number"
+                          id="customHeight"
+                          min="1.5"
+                          max="2.5"
+                          step="0.1"
+                          value="1.80"
+                        />
+                      </div>
+                      <div class="dimension-group">
+                        <label>
+                          <input type="checkbox" id="includeVeranda" checked />
+                          Incluir Varanda (+60cm no comprimento)
+                        </label>
+                      </div>
+                    </div>
+                    <div class="custom-size-preview">
+                      <h5>Preview das Dimensões:</h5>
+                      <div class="size-preview-box">
+                        <div class="preview-text" id="previewText">
+                          Área Útil: 1,20m × 1,20m<br />
+                          Com Varanda: 1,20m × 1,80m<br />
+                          Altura: 1,80m
+                        </div>
+                      </div>
+                      <button
+                        class="btn-apply-size"
+                        onclick="applyCustomSize()"
+                      >
+                        <i class="fas fa-ruler"></i>
+                        Aplicar Dimensões
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
 
               <div class="option-group">
-                <label>Cor Principal:</label>
-                <div class="color-options">
+                <label>Cores:</label>
+                <div class="color-selector">
+                  <div class="palette-selector">
+                    <div class="palette-grid">
+                      <div
+                        class="palette-card active"
+                        data-palette="candy"
+                        onclick="selectPalette('candy')"
+                      >
+                        <div class="palette-preview">
+                          <div
+                            class="color-strip"
+                            style="background: #e5d0ec"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #ffdde1"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #b4d9f5"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #c48a85"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #f8efd4"
+                          ></div>
+                        </div>
+                        <div class="palette-info">
+                          <h5>🧁 Doce & Infantil</h5>
+                          <p>Candy/Pastel</p>
+                        </div>
+                      </div>
+
+                      <div
+                        class="palette-card"
+                        data-palette="nature"
+                        onclick="selectPalette('nature')"
+                      >
+                        <div class="palette-preview">
+                          <div
+                            class="color-strip"
+                            style="background: #a8c09c"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #4b5b4b"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #d9e1e2"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #d6c4b0"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #ddd6ce"
+                          ></div>
+                        </div>
+                        <div class="palette-info">
+                          <h5>🌿 Natureza & Tranquilidade</h5>
+                          <p>Calm/Zen</p>
+                        </div>
+                      </div>
+
+                      <div
+                        class="palette-card"
+                        data-palette="classic"
+                        onclick="selectPalette('classic')"
+                      >
+                        <div class="palette-preview">
+                          <div
+                            class="color-strip"
+                            style="background: #cbbba0"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #8b5b4a"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #b7d9d3"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #994f4d"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #b8a99a"
+                          ></div>
+                        </div>
+                        <div class="palette-info">
+                          <h5>🏛️ Clássico & Elegante</h5>
+                          <p>Colonial/Antigo</p>
+                        </div>
+                      </div>
+
+                      <div
+                        class="palette-card"
+                        data-palette="vibrant"
+                        onclick="selectPalette('vibrant')"
+                      >
+                        <div class="palette-preview">
+                          <div
+                            class="color-strip"
+                            style="background: #ff6a13"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #012169"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #651e38"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #d4a017"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #f8e08e"
+                          ></div>
+                        </div>
+                        <div class="palette-info">
+                          <h5>🌈 Vibrante & Criativo</h5>
+                          <p>Lúdico/Artesanal</p>
+                        </div>
+                      </div>
+
+                      <div
+                        class="palette-card"
+                        data-palette="minimal"
+                        onclick="selectPalette('minimal')"
+                      >
+                        <div class="palette-preview">
+                          <div
+                            class="color-strip"
+                            style="background: #f5f6f7"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #a2aaad"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #d9e1e2"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #1f2a44"
+                          ></div>
+                          <div
+                            class="color-strip"
+                            style="background: #ddd6ce"
+                          ></div>
+                        </div>
+                        <div class="palette-info">
+                          <h5>⚡ Minimalista & Moderno</h5>
+                          <p>Escandinavo</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="palette-expand-section">
+                    <button
+                      class="btn-expand-colors"
+                      onclick="toggleColorCustomization()"
+                    >
+                      <span id="expandColorsText"
+                        >Não é o que queria? Escolha sua cor aqui</span
+                      >
+                      <i class="fas fa-chevron-down" id="expandColorsIcon"></i>
+                    </button>
+                  </div>
+
                   <div
-                    class="color-option active"
-                    data-option="color"
-                    data-value="rosa"
-                    style="background: #ff69b4"
-                  ></div>
-                  <div
-                    class="color-option"
-                    data-option="color"
-                    data-value="azul"
-                    style="background: #4169e1"
-                  ></div>
-                  <div
-                    class="color-option"
-                    data-option="color"
-                    data-value="amarela"
-                    style="background: #ffd700"
-                  ></div>
-                  <div
-                    class="color-option"
-                    data-option="color"
-                    data-value="branca"
-                    style="background: #ffffff; border: 2px solid #ddd"
-                  ></div>
-                  <div
-                    class="color-option"
-                    data-option="color"
-                    data-value="madeira"
-                    style="background: #8b4513"
-                  ></div>
+                    class="palette-customization"
+                    id="paletteCustomization"
+                    style="display: none"
+                  >
+                    <h4>Personalizar Cores</h4>
+
+                    <div class="palette-preview-section">
+                      <h5>Preview da Paleta</h5>
+                      <div class="main-palette-preview" id="mainPalettePreview">
+                        <div
+                          class="color-strip"
+                          style="background: #e5d0ec"
+                          data-part="wall"
+                        ></div>
+                        <div
+                          class="color-strip"
+                          style="background: #ffdde1"
+                          data-part="roof"
+                        ></div>
+                        <div
+                          class="color-strip"
+                          style="background: #b4d9f5"
+                          data-part="windows"
+                        ></div>
+                        <div
+                          class="color-strip"
+                          style="background: #c48a85"
+                          data-part="doors"
+                        ></div>
+                        <div
+                          class="color-strip"
+                          style="background: #f8efd4"
+                          data-part="floor"
+                        ></div>
+                      </div>
+                      <div class="palette-labels">
+                        <span>Parede</span>
+                        <span>Telhado</span>
+                        <span>Janelas</span>
+                        <span>Portas</span>
+                        <span>Piso</span>
+                      </div>
+                    </div>
+
+                    <div class="color-controls">
+                      <div class="color-part">
+                        <label>Parede:</label>
+                        <input
+                          type="color"
+                          id="customWall"
+                          value="#E5D0EC"
+                          onchange="updatePalettePreview()"
+                        />
+                      </div>
+                      <div class="color-part">
+                        <label>Telhado:</label>
+                        <input
+                          type="color"
+                          id="customRoof"
+                          value="#FFDDE1"
+                          onchange="updatePalettePreview()"
+                        />
+                      </div>
+                      <div class="color-part">
+                        <label>Janelas:</label>
+                        <input
+                          type="color"
+                          id="customWindows"
+                          value="#B4D9F5"
+                          onchange="updatePalettePreview()"
+                        />
+                      </div>
+                      <div class="color-part">
+                        <label>Portas:</label>
+                        <input
+                          type="color"
+                          id="customDoors"
+                          value="#C48A85"
+                          onchange="updatePalettePreview()"
+                        />
+                      </div>
+                      <div class="color-part">
+                        <label>Piso:</label>
+                        <input
+                          type="color"
+                          id="customFloor"
+                          value="#F8EFD4"
+                          onchange="updatePalettePreview()"
+                        />
+                      </div>
+                    </div>
+
+                    <button
+                      class="btn-apply-palette"
+                      onclick="applyCurrentPalette()"
+                    >
+                      <i class="fas fa-palette"></i>
+                      Aplicar Paleta
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -286,22 +724,34 @@
                     class="option-btn active"
                     data-option="window"
                     data-value="simples"
+                    data-price="0"
                   >
-                    Simples
+                    <div class="option-price-info">
+                      <span class="option-name">Simples</span>
+                      <span class="option-price">Incluso</span>
+                    </div>
                   </button>
                   <button
                     class="option-btn"
                     data-option="window"
                     data-value="florida"
+                    data-price="150"
                   >
-                    Florida
+                    <div class="option-price-info">
+                      <span class="option-name">Florida</span>
+                      <span class="option-price">+R$ 150</span>
+                    </div>
                   </button>
                   <button
                     class="option-btn"
                     data-option="window"
                     data-value="veneziana"
+                    data-price="200"
                   >
-                    Veneziana
+                    <div class="option-price-info">
+                      <span class="option-name">Veneziana</span>
+                      <span class="option-price">+R$ 200</span>
+                    </div>
                   </button>
                 </div>
               </div>
@@ -313,22 +763,34 @@
                     class="option-btn active"
                     data-option="door"
                     data-value="simples"
+                    data-price="0"
                   >
-                    Simples
+                    <div class="option-price-info">
+                      <span class="option-name">Simples</span>
+                      <span class="option-price">Incluso</span>
+                    </div>
                   </button>
                   <button
                     class="option-btn"
                     data-option="door"
                     data-value="dupla"
+                    data-price="180"
                   >
-                    Dupla
+                    <div class="option-price-info">
+                      <span class="option-name">Dupla</span>
+                      <span class="option-price">+R$ 180</span>
+                    </div>
                   </button>
                   <button
                     class="option-btn"
                     data-option="door"
-                    data-value="vitrô"
+                    data-value="vitro"
+                    data-price="250"
                   >
-                    Com Vitrô
+                    <div class="option-price-info">
+                      <span class="option-name">Com Vitrô</span>
+                      <span class="option-price">+R$ 250</span>
+                    </div>
                   </button>
                 </div>
               </div>
@@ -340,44 +802,44 @@
                     <input
                       type="checkbox"
                       data-option="extra"
-                      data-value="varanda"
-                      data-price="50"
-                    />
-                    <span>Varanda (+R$ 50)</span>
-                  </label>
-                  <label class="checkbox-option">
-                    <input
-                      type="checkbox"
-                      data-option="extra"
                       data-value="jardim"
-                      data-price="30"
+                      data-price="250"
                     />
-                    <span>Jardim (+R$ 30)</span>
+                    <span>Jardim Lateral (+R$ 250)</span>
                   </label>
                   <label class="checkbox-option">
                     <input
                       type="checkbox"
                       data-option="extra"
                       data-value="cerca"
-                      data-price="40"
+                      data-price="400"
                     />
-                    <span>Cercadinho (+R$ 40)</span>
+                    <span>Cercadinho Completo (+R$ 400)</span>
                   </label>
                   <label class="checkbox-option">
                     <input
                       type="checkbox"
                       data-option="extra"
                       data-value="luz"
-                      data-price="80"
+                      data-price="500"
                     />
-                    <span>Kit Iluminação LED (+R$ 80)</span>
+                    <span>Kit Iluminação LED (+R$ 500)</span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      data-option="extra"
+                      data-value="mobilia"
+                      data-price="600"
+                    />
+                    <span>Mobília Interna (+R$ 600)</span>
                   </label>
                 </div>
               </div>
 
               <div class="price-summary">
                 <div class="total-price">
-                  Total: R$ <span id="totalPrice">299</span>
+                  Total: R$ <span id="totalPrice">1800</span>
                 </div>
                 <button
                   class="btn-primary btn-large"
@@ -397,7 +859,7 @@
           <div class="about-content">
             <h2>Sobre a CM Restauração</h2>
             <p>
-              Com experiência e dedicação, oferecemos serviços completos de
+              Com mais de 20 anos de experiência e dedicação, oferecemos serviços completos de
               restauração e montagem de móveis. Nossa missão é renovar seus
               móveis com qualidade profissional e atendimento personalizado.
             </p>
@@ -430,7 +892,7 @@
                   <h3>WhatsApp</h3>
                   <p>(43) 9.9980-9090</p>
                   <span>Cláudio Michelato</span>
-                  <small>👆 Clique para conversar</small>
+                  <small>☝️ Clique para conversar</small>
                 </div>
               </div>
               <div class="contact-item">
@@ -444,7 +906,6 @@
             <div class="contact-form">
               <form id="contactForm">
                 <input type="text" placeholder="Seu nome" required />
-                <input type="tel" placeholder="Seu telefone" required />
                 <textarea
                   placeholder="Descreva o serviço que precisa"
                   rows="5"
@@ -461,11 +922,50 @@
     </main>
 
     <footer>
-      <div class="container">
-        <p>
-          &copy; 2025 CM Restauração de Móveis. Todos os direitos reservados.
-        </p>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-col pagamento">
+          <h4>Meios de Pagamento</h4>
+          <div class="pagamento-icones">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa" title="Visa">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard" title="Mastercard">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Elo_card_association_logo_-_black_text.svg" alt="Elo" title="Elo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="American Express" title="American Express">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/NFC_logo.svg" alt="Pagamento por Aproximação" title="Pagamento por Aproximação">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo%E2%80%94pix_powered_by_Banco_Central_%28Brazil%2C_2020%29.svg" alt="Pix" title="Pix">
+          </div>
+        </div>
+        <div class="footer-col envio">
+          <h4>Formas de Envio</h4>
+          <ul>
+            <li><span style="display:inline-flex;align-items:center;gap:8px;"><i class="material-icons" style="font-size:22px;vertical-align:middle;color:#f39c12;">local_shipping</i>Entrega a domicílio</span></li>
+            <li><span style="display:inline-flex;align-items:center;gap:8px;"><i class="material-icons" style="font-size:22px;vertical-align:middle;color:#f39c12;">store</i>Retirada no local</span></li>
+          </ul>
+        </div>
+        <div class="footer-col contato">
+          <h4>Contato</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:claudio.michelato01@gmail.com">claudio.michelato01@gmail.com</a></li>
+            <li><i class="fas fa-map-marker-alt"></i> R. Guaicurus, 121, Vila Americana, Andirá - PR</li>
+          </ul>
+        </div>
+        <div class="footer-col selos">
+          <h4>Segurança</h4>
+          <div class="selos-seguranca">
+            <img src="https://googleparanegocioslocais.com.br/wp-content/uploads/2022/09/Site-Seguro_marcio_berber.webp" alt="Site Seguro - Google para Negócios Locais" width="120" style="cursor:pointer;" onclick="window.open('https://transparencyreport.google.com/safe-browsing/search?url=https:%2F%2Fj0aod3v.github.io%2FCMoveis%2F&hl=pt_BR', '_blank')" />
+            <img src="https://img.shields.io/badge/SSL%2FTLS%20Ativo-HTTPS%20Seguro-brightgreen?logo=letsencrypt&logoColor=white" alt="SSL/TLS Ativo - HTTPS Seguro" width="120">
+            <div style="text-align:center; font-size:0.85rem; margin-top:4px; color:#333;">
+              <img src="https://img.shields.io/badge/%E2%9C%94%20MEI-registrado%20no%20Brasil-4c1?style=flat&labelColor=555555" alt="MEI registrado no Brasil" />
+              <div>CNPJ: 13.018.852/0001-58</div>
+            </div>
+          </div>
+        </div>
       </div>
+      <div class="footer-copy">&copy; 2025 CM Restauração de Móveis. Todos os direitos reservados.</div>
+      <a href="https://wa.me/5543999809090" class="whatsapp-float" target="_blank" title="Fale conosco no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
     </footer>
 
     <script src="script.js"></script>
