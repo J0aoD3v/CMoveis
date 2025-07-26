@@ -43,7 +43,8 @@ CMoveis/
   - Azul escuro (#2c3e50)
   - Laranja (#f39c12)
   - Cinza claro (#f8f9fa)
-- **Tipografia**: Arial, sans-serif
+- **Tipografia**: Inter (principal), Montserrat (títulos), Material Icons (ícones Google)
+- **Favicons**: Compatíveis com todos os navegadores (em `img/favicon`)
 - **Layout**: Mobile-first, totalmente responsivo
 - **Animações**: Suaves e profissionais
 
@@ -166,6 +167,9 @@ Altere as variáveis CSS no `styles.css`:
 - **Intersection Observer**: Animações baseadas no scroll
 - **Form Validation**: Validação nativa do HTML5
 - **Acessibilidade**: Semântica adequada e navegação por teclado
+- **Favicons personalizados**: Compatíveis com todos os navegadores
+- **Ícones de envio**: Google Material Icons (local_shipping, store)
+- **Sobre**: Agora menciona mais de 20 anos de experiência
 
 ## 📝 Próximas Melhorias
 
