@@ -15,7 +15,7 @@ Um site profissional e responsivo para a empresa CM Restauração de Móveis, es
 
 - **Proprietário**: Cláudio
 - **WhatsApp**: (43) 9.9980-9090
-- **Região de Atendimento**: Londrina e cidades vizinhas
+- **Região de Atendimento**: Andirá e cidades vizinhas
 
 ## 🚀 Tecnologias Utilizadas
 
