@@ -1,3 +1,15 @@
+// Lazy load do vídeo do YouTube na home
+document.addEventListener("DOMContentLoaded", function () {
+  const lazyYoutube = document.getElementById("lazy-youtube");
+  if (lazyYoutube) {
+    const poster = lazyYoutube.querySelector(".video-poster");
+    if (poster) {
+      poster.addEventListener("click", function () {
+        lazyYoutube.innerHTML = `<iframe src=\"https://www.youtube.com/embed/KTV9ZMeIYkw?si=uyJjebn9JnLGVHSL&autoplay=1&mute=1\" title=\"CM Restauração - Nossos Serviços\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen style=\"width:100%;height:100%;border-radius:15px;\"></iframe>`;
+      });
+    }
+  }
+});
 // Mobile menu toggle
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-menu");
@@ -76,7 +88,6 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.style.opacity = "1";
-      entry.target.style.transform = "translateY(0)";
     }
   });
 }, observerOptions);
@@ -89,8 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   animatedElements.forEach((el) => {
     el.style.opacity = "0";
-    el.style.transform = "translateY(30px)";
-    el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+    el.style.transition = "opacity 0.6s ease";
     observer.observe(el);
   });
 
@@ -931,4 +941,211 @@ function toggleColorCustomization() {
     expandIcon.classList.remove("fa-chevron-up");
     expandIcon.classList.add("fa-chevron-down");
   }
+}
+
+// ================================
+// SISTEMA DE FEEDBACK E AVALIAÇÃO
+// ================================
+
+let currentRating = 0;
+
+// Inicializar sistema de avaliação por estrelas
+document.addEventListener("DOMContentLoaded", function () {
+  initializeFeedbackSystem();
+});
+
+function initializeFeedbackSystem() {
+  const stars = document.querySelectorAll(".star-rating .star");
+  const ratingText = document.getElementById("ratingText");
+  const feedbackForm = document.getElementById("feedbackForm");
+
+  // Configurar eventos das estrelas
+  stars.forEach((star, index) => {
+    star.addEventListener("mouseenter", () => {
+      highlightStars(index + 1);
+      updateRatingText(index + 1);
+    });
+
+    star.addEventListener("mouseleave", () => {
+      highlightStars(currentRating);
+      updateRatingText(currentRating);
+    });
+
+    star.addEventListener("click", () => {
+      currentRating = index + 1;
+      selectStars(currentRating);
+      updateRatingText(currentRating);
+    });
+  });
+
+  // Configurar envio do formulário
+  if (feedbackForm) {
+    feedbackForm.addEventListener("submit", handleFeedbackSubmit);
+  }
+}
+
+function highlightStars(rating) {
+  const stars = document.querySelectorAll(".star-rating .star");
+  stars.forEach((star, index) => {
+    if (index < rating) {
+      star.classList.add("hovered");
+    } else {
+      star.classList.remove("hovered");
+    }
+  });
+}
+
+function selectStars(rating) {
+  const stars = document.querySelectorAll(".star-rating .star");
+  stars.forEach((star, index) => {
+    if (index < rating) {
+      star.classList.add("selected");
+    } else {
+      star.classList.remove("selected");
+    }
+  });
+}
+
+function updateRatingText(rating) {
+  const ratingText = document.getElementById("ratingText");
+  if (!ratingText) return;
+
+  const ratingTexts = {
+    0: "Clique nas estrelas para avaliar",
+    1: "⭐ Muito insatisfeito",
+    2: "⭐⭐ Insatisfeito",
+    3: "⭐⭐⭐ Neutro",
+    4: "⭐⭐⭐⭐ Satisfeito",
+    5: "⭐⭐⭐⭐⭐ Muito satisfeito",
+  };
+
+  ratingText.textContent = ratingTexts[rating] || ratingTexts[0];
+}
+
+function handleFeedbackSubmit(event) {
+  event.preventDefault();
+
+  // Validar se uma avaliação foi selecionada
+  if (currentRating === 0) {
+    alert("Por favor, selecione uma avaliação de 1 a 5 estrelas.");
+    return;
+  }
+
+  // Coletar dados do formulário
+  const formData = {
+    rating: currentRating,
+    customerName: document.getElementById("customerName").value,
+    serviceType: document.getElementById("serviceType").value,
+    feedbackText: document.getElementById("feedbackText").value,
+    allowPublish: document.getElementById("allowPublish").checked,
+    date: new Date().toLocaleDateString("pt-BR"),
+  };
+
+  // Simular envio (você pode substituir por integração real)
+  sendFeedback(formData);
+}
+
+function sendFeedback(feedbackData) {
+  // Aqui você implementaria o envio real para um servidor
+  // Por enquanto, vamos simular e mostrar uma mensagem de sucesso
+
+  // Criar mensagem do WhatsApp
+  const customerName = feedbackData.customerName;
+  const rating = "⭐".repeat(feedbackData.rating);
+  const service = feedbackData.serviceType;
+  const comment = feedbackData.feedbackText;
+
+  const whatsappMessage =
+    `*AVALIAÇÃO DE CLIENTE*\n\n` +
+    `👤 Nome: ${customerName}\n` +
+    `⭐ Avaliação: ${rating} (${feedbackData.rating}/5)\n` +
+    `🔧 Serviço: ${service}\n` +
+    `💬 Comentário: ${comment}\n` +
+    `📅 Data: ${feedbackData.date}`;
+
+  const phoneNumber = "5543999809090";
+  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+    whatsappMessage
+  )}`;
+
+  // Mostrar mensagem de sucesso
+  alert(
+    "Obrigado pela sua avaliação! Você será redirecionado para o WhatsApp para enviar o feedback."
+  );
+
+  // Abrir WhatsApp
+  window.open(whatsappURL, "_blank");
+
+  // Resetar formulário
+  resetFeedbackForm();
+
+  // Opcionalmente, adicionar a avaliação à exibição local
+  if (feedbackData.allowPublish) {
+    addReviewToDisplay(feedbackData);
+  }
+}
+
+function resetFeedbackForm() {
+  currentRating = 0;
+  selectStars(0);
+  updateRatingText(0);
+  document.getElementById("feedbackForm").reset();
+}
+
+function addReviewToDisplay(feedbackData) {
+  const reviewsGrid = document.getElementById("reviewsGrid");
+  if (!reviewsGrid) return;
+
+  const reviewCard = document.createElement("div");
+  reviewCard.className = "review-card";
+
+  const stars =
+    "⭐".repeat(feedbackData.rating) + "☆".repeat(5 - feedbackData.rating);
+  const firstName = feedbackData.customerName.split(" ")[0];
+  const lastInitial = feedbackData.customerName.split(" ")[1]
+    ? feedbackData.customerName.split(" ")[1][0] + "."
+    : "";
+  const anonymizedName = `${firstName} ${lastInitial}`;
+
+  reviewCard.innerHTML = `
+    <div class="review-header">
+      <div class="reviewer-info">
+        <span class="reviewer-name">${anonymizedName}</span>
+        <span class="service-tag">${getServiceDisplayName(
+          feedbackData.serviceType
+        )}</span>
+      </div>
+      <div class="review-stars">
+        ${generateStarHTML(feedbackData.rating)}
+      </div>
+    </div>
+    <p class="review-text">"${feedbackData.feedbackText}"</p>
+    <span class="review-date">${feedbackData.date}</span>
+  `;
+
+  // Adicionar no início da lista
+  reviewsGrid.insertBefore(reviewCard, reviewsGrid.firstChild);
+}
+
+function generateStarHTML(rating) {
+  let starsHTML = "";
+  for (let i = 1; i <= 5; i++) {
+    if (i <= rating) {
+      starsHTML += '<span class="star filled">&#9733;</span>';
+    } else {
+      starsHTML += '<span class="star">&#9733;</span>';
+    }
+  }
+  return starsHTML;
+}
+
+function getServiceDisplayName(serviceType) {
+  const serviceNames = {
+    restauracao: "Restauração",
+    montagem: "Montagem",
+    casinha: "Casinha de Boneca",
+    prateleiras: "Prateleiras",
+    outros: "Outros",
+  };
+  return serviceNames[serviceType] || serviceType;
 }

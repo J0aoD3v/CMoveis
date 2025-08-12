@@ -30,6 +30,7 @@
             <li><a href="#services">Serviços</a></li>
             <li><a href="#about">Sobre</a></li>
             <li><a href="#contact">Contato</a></li>
+            <li><a href="#feedback">Avaliações</a></li>
           </ul>
           <div class="hamburger">
             <span></span>
@@ -55,15 +56,13 @@
             </div>
           </div>
           <div class="hero-video">
-            <div class="video-container">
-              <iframe
-                src="https://www.youtube.com/embed/KTV9ZMeIYkw?si=uyJjebn9JnLGVHSL&autoplay=1&mute=1&loop=1&playlist=KTV9ZMeIYkw"
-                title="CM Restauração - Nossos Serviços"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              >
-              </iframe>
+            <div class="video-container" id="lazy-youtube">
+              <div class="video-poster">
+                <img src="https://img.youtube.com/vi/KTV9ZMeIYkw/hqdefault.jpg" alt="CM Restauração - Nossos Serviços" class="video-thumb">
+                <button class="play-btn" aria-label="Assistir vídeo">
+                  <i class="fas fa-play"></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -919,6 +918,134 @@
           </div>
         </div>
       </section>
+
+      <!-- Seção de Avaliação e Feedback -->
+      <section id="feedback" class="feedback-section">
+        <div class="container">
+          <div class="feedback-content">
+            <h2>Avalie Nosso Serviço</h2>
+            <p>Sua opinião é muito importante para nós! Conte-nos como foi sua experiência.</p>
+            
+            <div class="feedback-form-container">
+              <form id="feedbackForm" class="feedback-form">
+                <div class="rating-section">
+                  <label class="rating-label">Como você avalia nosso serviço?</label>
+                  <div class="star-rating" id="starRating">
+                    <span class="star" data-rating="1">&#9733;</span>
+                    <span class="star" data-rating="2">&#9733;</span>
+                    <span class="star" data-rating="3">&#9733;</span>
+                    <span class="star" data-rating="4">&#9733;</span>
+                    <span class="star" data-rating="5">&#9733;</span>
+                  </div>
+                  <div class="rating-text" id="ratingText">Clique nas estrelas para avaliar</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="customerName">Seu nome:</label>
+                  <input type="text" id="customerName" name="customerName" placeholder="Digite seu nome" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="serviceType">Serviço utilizado:</label>
+                  <select id="serviceType" name="serviceType" required>
+                    <option value="">Selecione o serviço</option>
+                    <option value="restauracao">Restauração de Móveis</option>
+                    <option value="montagem">Montagem de Móveis</option>
+                    <option value="casinha">Casinha de Boneca</option>
+                    <option value="prateleiras">Prateleiras sob Medida</option>
+                    <option value="outros">Outros Serviços</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="feedbackText">Conte-nos sobre sua experiência:</label>
+                  <textarea 
+                    id="feedbackText" 
+                    name="feedbackText" 
+                    placeholder="Compartilhe sua opinião, sugestões ou elogios..." 
+                    rows="5" 
+                    required>
+                  </textarea>
+                </div>
+
+                <div class="form-group checkbox-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="allowPublish" name="allowPublish">
+                    <span class="checkmark"></span>
+                    Autorizo a publicação desta avaliação (seu nome será mantido privado)
+                  </label>
+                </div>
+
+                <button type="submit" class="btn-primary btn-feedback">
+                  <i class="fas fa-paper-plane"></i>
+                  Enviar Avaliação
+                </button>
+              </form>
+            </div>
+
+            <!-- Exibição de Avaliações Anteriores -->
+            <div class="reviews-display">
+              <h3>O que nossos clientes dizem</h3>
+              <div class="reviews-grid" id="reviewsGrid">
+                <!-- Exemplo de avaliação -->
+                <div class="review-card">
+                  <div class="review-header">
+                    <div class="reviewer-info">
+                      <span class="reviewer-name">Maria S.</span>
+                      <span class="service-tag">Restauração</span>
+                    </div>
+                    <div class="review-stars">
+                      <span class="star filled">&#9733;</span>
+                      <span class="star filled">&#9733;</span>
+                      <span class="star filled">&#9733;</span>
+                      <span class="star filled">&#9733;</span>
+                      <span class="star filled">&#9733;</span>
+                    </div>
+                  </div>
+                  <p class="review-text">"Serviço excepcional! Meu móvel antigo ficou como novo. Recomendo muito!"</p>
+                  <span class="review-date">Janeiro 2025</span>
+                </div>
+
+                <div class="review-card">
+                  <div class="review-header">
+                    <div class="reviewer-info">
+                      <span class="reviewer-name">João P.</span>
+                      <span class="service-tag">Casinha de Boneca</span>
+                    </div>
+                    <div class="review-stars">
+                      <span class="star filled">&#9733;</span>
+                      <span class="star filled">&#9733;</span>
+                      <span class="star filled">&#9733;</span>
+                      <span class="star filled">&#9733;</span>
+                      <span class="star filled">&#9733;</span>
+                    </div>
+                  </div>
+                  <p class="review-text">"Minha filha adorou a casinha! Trabalho de qualidade e entrega pontual."</p>
+                  <span class="review-date">Dezembro 2024</span>
+                </div>
+
+                <div class="review-card">
+                  <div class="review-header">
+                    <div class="reviewer-info">
+                      <span class="reviewer-name">Ana L.</span>
+                      <span class="service-tag">Montagem</span>
+                    </div>
+                    <div class="review-stars">
+                      <span class="star filled">&#9733;</span>
+                      <span class="star filled">&#9733;</span>
+                      <span class="star filled">&#9733;</span>
+                      <span class="star filled">&#9733;</span>
+                      <span class="star">&#9733;</span>
+                    </div>
+                  </div>
+                  <p class="review-text">"Ótimo atendimento e preço justo. Montagem rápida e bem feita."</p>
+                  <span class="review-date">Novembro 2024</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
@@ -928,19 +1055,19 @@
         <div class="footer-col pagamento">
           <h4>Meios de Pagamento</h4>
           <div class="pagamento-icones">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa" title="Visa" style="width:54px;height:34px;object-fit:contain;background:#fff;border-radius:6px;box-shadow:0 1px 2px #0001;" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard" title="Mastercard" style="width:54px;height:34px;object-fit:contain;background:#fff;border-radius:6px;box-shadow:0 1px 2px #0001;" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Elo_card_association_logo_-_black_text.svg" alt="Elo" title="Elo" style="width:54px;height:34px;object-fit:contain;background:#fff;border-radius:6px;box-shadow:0 1px 2px #0001;" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="American Express" title="American Express" style="width:54px;height:34px;object-fit:contain;background:#fff;border-radius:6px;box-shadow:0 1px 2px #0001;" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/NFC_logo.svg" alt="Pagamento por Aproximação" title="Pagamento por Aproximação" style="width:54px;height:34px;object-fit:contain;background:#fff;border-radius:6px;box-shadow:0 1px 2px #0001;" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo%E2%80%94pix_powered_by_Banco_Central_%28Brazil%2C_2020%29.svg" alt="Pix" title="Pix" style="width:54px;height:34px;object-fit:contain;background:#fff;border-radius:6px;box-shadow:0 1px 2px #0001;" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa" title="Visa" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard" title="Mastercard" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Elo_card_association_logo_-_black_text.svg" alt="Elo" title="Elo" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="American Express" title="American Express" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/NFC_logo.svg" alt="Pagamento por Aproximação" title="Pagamento por Aproximação" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo%E2%80%94pix_powered_by_Banco_Central_%28Brazil%2C_2020%29.svg" alt="Pix" title="Pix" />
           </div>
         </div>
         <div class="footer-col envio">
           <h4>Formas de Envio</h4>
           <ul>
-            <li><span style="display:inline-flex;align-items:center;gap:8px;"><i class="material-icons" style="font-size:22px;vertical-align:middle;color:#f39c12;">local_shipping</i>Entrega a domicílio</span></li>
-            <li><span style="display:inline-flex;align-items:center;gap:8px;"><i class="material-icons" style="font-size:22px;vertical-align:middle;color:#f39c12;">store</i>Retirada no local</span></li>
+            <li><span class="envio-inline"><i class="material-icons envio-icone">local_shipping</i>Entrega a domicílio</span></li>
+            <li><span class="envio-inline"><i class="material-icons envio-icone">store</i>Retirada no local</span></li>
           </ul>
         </div>
         <div class="footer-col contato">
@@ -955,15 +1082,15 @@
           <div class="selos-seguranca">
             <img src="https://googleparanegocioslocais.com.br/wp-content/uploads/2022/09/Site-Seguro_marcio_berber.webp" alt="Site Seguro - Google para Negócios Locais" width="120" style="cursor:pointer;" onclick="window.open('https://transparencyreport.google.com/safe-browsing/search?url=https:%2F%2Fj0aod3v.github.io%2FCMoveis%2F&hl=pt_BR', '_blank')" />
             <img src="https://img.shields.io/badge/SSL%2FTLS%20Ativo-HTTPS%20Seguro-brightgreen?logo=letsencrypt&logoColor=white" alt="SSL/TLS Ativo - HTTPS Seguro" width="120">
-            <div style="text-align:center; font-size:0.85rem; margin-top:4px; color:#333;">
+            <div class="selos-info">
               <img src="https://img.shields.io/badge/%E2%9C%94%20MEI-registrado%20no%20Brasil-4c1?style=flat&labelColor=555555" alt="MEI registrado no Brasil" />
               <div>CNPJ: 13.018.852/0001-58</div>
             </div>
           </div>
         </div>
       </div>
-      <div class="footer-bottom-bar" style="display:flex;justify-content:space-between;align-items:center;background:#eeeeee;padding:0.7rem 2.5rem 0.7rem 1.2rem;min-height:48px;">
-        <div class="footer-tech" style="display:flex;align-items:center;gap:8px;font-size:0.98rem;color:#444;white-space:nowrap;">
+      <div class="footer-bottom-bar">
+        <div class="footer-tech">
           <span style="white-space:nowrap;">Criado com</span>
           <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" width="20" style="vertical-align:middle;"/>
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original-wordmark.svg" alt="HTML5" width="24" style="vertical-align:middle;"/>
@@ -971,7 +1098,7 @@
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" width="22" style="vertical-align:middle;"/>
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code" width="22" style="vertical-align:middle;"/>
         </div>
-        <div class="footer-copy" style="margin-right:60px;text-align:right;color:#888;font-size:0.95rem; background:none;">&copy; 2025 CM Restauração de Móveis. Todos os direitos reservados.</div>
+        <div class="footer-copy">&copy; 2025 CM Restauração de Móveis. Todos os direitos reservados.</div>
       </div>
       <a href="https://wa.me/5543999809090" class="whatsapp-float" target="_blank" title="Fale conosco no WhatsApp">
         <i class="fab fa-whatsapp"></i>
