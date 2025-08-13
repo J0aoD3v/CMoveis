@@ -3,19 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CM Restauração de Móveis</title>
+    <title>Casinha de Boneca Personalizada - CM Restauração de Móveis</title>
     <link rel="stylesheet" href="styles.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="img/favicon/site.webmanifest">
-    <link rel="shortcut icon" href="img/favicon/favicon.ico">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="img/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="img/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="img/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="img/favicon/site.webmanifest" />
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" />
   </head>
   <body>
     <header>
@@ -25,13 +42,11 @@
             <h2>CM RESTAURAÇÃO DE MÓVEIS</h2>
           </div>
           <ul class="nav-menu">
-            <li><a href="#home">Início</a></li>
-            <li><a href="#highlights">Destaques</a></li>
-            <li><a href="#services">Serviços</a></li>
-            <li><a href="#about">Sobre</a></li>
-            <li><a href="#contact">Contato</a></li>
-            <li><a href="#feedback">Avaliações</a></li>
-            <li><a href="casinha.html" class="special-link">Casinha de Boneca</a></li>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="index.html#highlights">Destaques</a></li>
+            <li><a href="index.html#services">Serviços</a></li>
+            <li><a href="index.html#about">Sobre</a></li>
+            <li><a href="index.html#contact">Contato</a></li>
           </ul>
           <div class="hamburger">
             <span></span>
@@ -43,156 +58,180 @@
     </header>
 
     <main>
-      <section id="home" class="hero">
+      <!-- Hero Section da Casinha -->
+      <section class="casinha-hero">
         <div class="container">
           <div class="hero-content">
-            <h1>Restauração Profissional de Móveis</h1>
+            <h1>Casinha de Boneca dos Sonhos</h1>
             <p>
-              Especialista em restauração, montagem e colocação de móveis com
-              qualidade e precisão
+              Transforme a imaginação da sua filha em realidade com nossa
+              casinha de boneca 100% personalizada. Cada detalhe pensado
+              especialmente para ela!
             </p>
+            <div class="hero-stats">
+              <div class="stat-item">
+                <div class="stat-number">100+</div>
+                <div class="stat-text">Casinhas Criadas</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">5★</div>
+                <div class="stat-text">Avaliação Média</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">15</div>
+                <div class="stat-text">Dias de Garantia</div>
+              </div>
+            </div>
             <div class="hero-buttons">
-              <a href="#highlights" class="btn-primary">Ver Destaques</a>
-              <a href="#contact" class="btn-secondary">Entre em Contato</a>
+              <a href="#personalizar" class="btn-primary btn-large">
+                <i class="fas fa-paint-brush"></i>
+                Personalizar Agora
+              </a>
+              <a href="#galeria" class="btn-secondary">
+                <i class="fas fa-images"></i>
+                Ver Galeria
+              </a>
             </div>
           </div>
-          <div class="hero-video">
-            <div class="video-container" id="lazy-youtube">
-              <div class="video-poster">
-                <img src="https://img.youtube.com/vi/KTV9ZMeIYkw/hqdefault.jpg" alt="CM Restauração - Nossos Serviços" class="video-thumb">
-                <button class="play-btn" aria-label="Assistir vídeo">
-                  <i class="fas fa-play"></i>
-                </button>
+          <div class="hero-image">
+            <img
+              src="img/frente.jpg"
+              alt="Casinha de Boneca Principal"
+              class="main-hero-img"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Galeria de Imagens -->
+      <section id="galeria" class="galeria-section">
+        <div class="container">
+          <h2>Galeria de Casinhas</h2>
+          <p>Veja alguns dos nossos trabalhos realizados</p>
+
+          <div class="galeria-grid">
+            <div class="galeria-item">
+              <img
+                src="img/frente.jpg"
+                alt="Vista Frontal"
+                onclick="openModal(this)"
+              />
+              <div class="galeria-info">
+                <h4>Vista Frontal</h4>
+                <p>Fachada principal com detalhes únicos</p>
+              </div>
+            </div>
+            <div class="galeria-item">
+              <img
+                src="img/lateral.jpg"
+                alt="Vista Lateral"
+                onclick="openModal(this)"
+              />
+              <div class="galeria-info">
+                <h4>Vista Lateral</h4>
+                <p>Perfil lateral mostrando a estrutura</p>
+              </div>
+            </div>
+            <div class="galeria-item">
+              <img
+                src="img/interior.jpg"
+                alt="Interior"
+                onclick="openModal(this)"
+              />
+              <div class="galeria-info">
+                <h4>Interior Completo</h4>
+                <p>Ambiente interno totalmente mobiliado</p>
+              </div>
+            </div>
+            <div class="galeria-item">
+              <img
+                src="img/detalhes.jpg"
+                alt="Detalhes"
+                onclick="openModal(this)"
+              />
+              <div class="galeria-info">
+                <h4>Detalhes Especiais</h4>
+                <p>Acabamentos e elementos decorativos</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="highlights" class="highlights">
+      <!-- Seção de Características -->
+      <section class="caracteristicas-section">
         <div class="container">
-          <h2>Produtos em Destaque</h2>
-          <div class="highlights-grid">
-            <div class="highlight-card featured">
-              <div class="highlight-image">
-                <i class="fas fa-home"></i>
-                <span class="badge">Mais Vendido</span>
+          <h2>Por que escolher nossa Casinha?</h2>
+          <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+              <div class="caracteristica-icon">
+                <i class="fas fa-tree"></i>
               </div>
-              <h3>Casinha de Boneca Grande</h3>
+              <h3>Madeira de Qualidade</h3>
               <p>
-                Casinha de boneca personalizada com acabamento premium. Escolha
-                cores, janelas, portas e muito mais!
+                Utilizamos madeira MDF de alta qualidade, tratada e resistente à
+                umidade.
               </p>
-              <div class="price">A partir de R$ 1.800,00</div>
-              <button
-                class="btn-primary"
-                onclick="openMarketplace('casinha-boneca')"
-              >
-                Personalizar Agora
-              </button>
             </div>
-            <div class="highlight-card">
-              <div class="highlight-image">
-                <i class="fas fa-chair"></i>
+            <div class="caracteristica-card">
+              <div class="caracteristica-icon">
+                <i class="fas fa-palette"></i>
               </div>
-              <h3>Restauração</h3>
-              <p>Renovação completa de móveis antigos com verniz especial</p>
-              <div class="price">Consulte preço</div>
-              <button
-                class="btn-secondary"
-                onclick="openContact('restauracao')"
-              >
-                Solicitar Orçamento
-              </button>
+              <h3>Totalmente Personalizável</h3>
+              <p>
+                Escolha cores, janelas, portas, móveis e todos os detalhes da
+                casinha.
+              </p>
             </div>
-            <div class="highlight-card">
-              <div class="highlight-image">
-                <i class="fas fa-hammer"></i>
-              </div>
-              <h3>Montagem</h3>
-              <p>Montagem rápida e segura de móveis novos</p>
-              <div class="price">A partir de R$ 50,00</div>
-              <button class="btn-secondary" onclick="openContact('montagem')">
-                Agendar Serviço
-              </button>
-            </div>
-            <div class="highlight-card">
-              <div class="highlight-image">
+            <div class="caracteristica-card">
+              <div class="caracteristica-icon">
                 <i class="fas fa-tools"></i>
               </div>
-              <h3>Outros Serviços</h3>
+              <h3>Fabricação Artesanal</h3>
               <p>
-                Troca de peças, pinturas, colocação, prateleiras sob medida e
-                mais!
-              </p>
-              <div class="price">Consulte preço</div>
-              <button class="btn-secondary" onclick="openContact('outros')">
-                Solicitar Orçamento
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="services" class="services">
-        <div class="container">
-          <h2>Nossos Serviços</h2>
-          <div class="services-grid">
-            <div class="service-card">
-              <i class="fas fa-screwdriver-wrench"></i>
-              <h3>Desmontagem/Montagem</h3>
-              <p>
-                Serviços especializados de desmontagem e montagem de móveis com
-                cuidado e precisão
+                Cada casinha é única, feita à mão com muito carinho e atenção
+                aos detalhes.
               </p>
             </div>
-            <div class="service-card">
-              <i class="fas fa-brush"></i>
-              <h3>Restauração com Verniz</h3>
+            <div class="caracteristica-card">
+              <div class="caracteristica-icon">
+                <i class="fas fa-shipping-fast"></i>
+              </div>
+              <h3>Entrega Rápida</h3>
               <p>
-                Restauração completa de móveis com aplicação de verniz para
-                renovar e proteger
+                Prazo de entrega de 15 a 30 dias úteis, dependendo da
+                personalização.
               </p>
             </div>
-            <div class="service-card">
-              <i class="fas fa-cog"></i>
-              <h3>Troca de Peças</h3>
+            <div class="caracteristica-card">
+              <div class="caracteristica-icon">
+                <i class="fas fa-child"></i>
+              </div>
+              <h3>Segura para Crianças</h3>
               <p>
-                Substituição de dobradiças, corrediças, puxadores e outros itens
+                Todas as peças são lixadas e não possuem pontas ou partes
+                cortantes.
               </p>
             </div>
-            <div class="service-card">
-              <i class="fas fa-paint-roller"></i>
-              <h3>Pinturas</h3>
-              <p>Pinturas de portas, janelas e pergolados de madeira</p>
-            </div>
-            <div class="service-card">
-              <i class="fas fa-home"></i>
-              <h3>Colocação</h3>
+            <div class="caracteristica-card">
+              <div class="caracteristica-icon">
+                <i class="fas fa-medal"></i>
+              </div>
+              <h3>Garantia de 15 dias</h3>
               <p>
-                Instalação de varal, cortinas, persianas, quadros e prateleiras
-              </p>
-            </div>
-            <div class="service-card">
-              <i class="fas fa-ruler"></i>
-              <h3>Prateleiras sob Medida</h3>
-              <p>
-                Fabricação e instalação de prateleiras personalizadas conforme
-                suas necessidades
+                Garantimos a qualidade do produto e oferecemos suporte
+                pós-venda.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="marketplace" class="marketplace" style="display: none">
+      <!-- Seção de Personalização (mesmo conteúdo do marketplace) -->
+      <section id="personalizar" class="personalizacao-section">
         <div class="container">
-          <div class="marketplace-header">
-            <button class="back-btn" onclick="closeMarketplace()">
-              <i class="fas fa-arrow-left"></i> Voltar
-            </button>
-            <h2>Personalize sua Casinha de Boneca</h2>
-          </div>
+          <h2>Personalize sua Casinha de Boneca</h2>
+          <p>Configure cada detalhe para criar a casinha perfeita!</p>
 
           <div class="marketplace-content">
             <div class="product-gallery">
@@ -232,8 +271,9 @@
             </div>
 
             <div class="customization-panel">
-              <h3>Personalize sua Casinha</h3>
+              <h3>Configure sua Casinha</h3>
 
+              <!-- Tamanhos -->
               <div class="option-group">
                 <label>Tamanho:</label>
                 <div class="size-selector">
@@ -242,83 +282,13 @@
                       <button
                         class="option-btn active"
                         data-option="size"
-                        data-value="pequena"
-                        data-price="1800"
-                        data-price-varanda="2200"
-                      >
-                        <div class="size-details">
-                          <strong
-                            >Pequena -
-                            <span class="price-display">R$ 1.800</span></strong
-                          >
-                          <div class="dimensions">
-                            <span>🏠 Área Útil: 1,20m × 1,20m</span>
-                            <span class="varanda-info">📏 Altura: 1,80m</span>
-                          </div>
-                          <div class="varanda-toggle-inline">
-                            <div class="varanda-checkbox-small">
-                              <span class="varanda-label"
-                                >Incluir Varanda?</span
-                              >
-                              <div class="checkbox-varanda">
-                                <div class="checkbox-area">
-                                  <input
-                                    type="checkbox"
-                                    data-size="pequena"
-                                    onchange="toggleVarandaInline(this)"
-                                  />
-                                </div>
-                                <div class="varanda-price">+R$ 400</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <button
-                        class="option-btn"
-                        data-option="size"
-                        data-value="media"
-                        data-price="2400"
-                        data-price-varanda="2800"
-                      >
-                        <div class="size-details">
-                          <strong
-                            >Média -
-                            <span class="price-display">R$ 2.400</span></strong
-                          >
-                          <div class="dimensions">
-                            <span>🏠 Área Útil: 1,40m × 1,40m</span>
-                            <span class="varanda-info">📏 Altura: 2,00m</span>
-                          </div>
-                          <div class="varanda-toggle-inline">
-                            <div class="varanda-checkbox-small">
-                              <span class="varanda-label"
-                                >Incluir Varanda?</span
-                              >
-                              <div class="checkbox-varanda">
-                                <div class="checkbox-area">
-                                  <input
-                                    type="checkbox"
-                                    data-size="media"
-                                    onchange="toggleVarandaInline(this)"
-                                  />
-                                </div>
-                                <div class="varanda-price">+R$ 400</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                      <button
-                        class="option-btn"
-                        data-option="size"
                         data-value="grande"
                         data-price="3100"
                         data-price-varanda="3500"
                       >
                         <div class="size-details">
                           <strong
-                            >Grande -
+                            >Casinha Padrão -
                             <span class="price-display">R$ 3.100</span></strong
                           >
                           <div class="dimensions">
@@ -326,21 +296,10 @@
                             <span class="varanda-info">📏 Altura: 2,00m</span>
                           </div>
                           <div class="varanda-toggle-inline">
-                            <div class="varanda-checkbox-small">
-                              <span class="varanda-label"
-                                >Incluir Varanda?</span
-                              >
-                              <div class="checkbox-varanda">
-                                <div class="checkbox-area">
-                                  <input
-                                    type="checkbox"
-                                    data-size="grande"
-                                    onchange="toggleVarandaInline(this)"
-                                  />
-                                </div>
-                                <div class="varanda-price">+R$ 400</div>
-                              </div>
-                            </div>
+                            <label class="checkbox-option">
+                              <input type="checkbox" data-size="grande" />
+                              <span>Incluir Varanda? (+R$ 400)</span>
+                            </label>
                           </div>
                         </div>
                       </button>
@@ -429,6 +388,7 @@
                 </div>
               </div>
 
+              <!-- Cores -->
               <div class="option-group">
                 <label>Cores:</label>
                 <div class="color-selector">
@@ -717,6 +677,7 @@
                 </div>
               </div>
 
+              <!-- Janelas -->
               <div class="option-group">
                 <label>Tipo de Janela:</label>
                 <div class="option-buttons">
@@ -756,6 +717,7 @@
                 </div>
               </div>
 
+              <!-- Portas -->
               <div class="option-group">
                 <label>Tipo de Porta:</label>
                 <div class="option-buttons">
@@ -795,6 +757,7 @@
                 </div>
               </div>
 
+              <!-- Extras -->
               <div class="option-group">
                 <label>Extras:</label>
                 <div class="checkbox-options">
@@ -837,16 +800,17 @@
                 </div>
               </div>
 
+              <!-- Resumo de Preço -->
               <div class="price-summary">
                 <div class="total-price">
-                  Total: R$ <span id="totalPrice">1800</span>
+                  Total: R$ <span id="totalPrice">3100</span>
                 </div>
                 <button
                   class="btn-primary btn-large"
                   onclick="finalizePurchase()"
                 >
                   <i class="fab fa-whatsapp"></i>
-                  Finalizar Pedido
+                  Fazer Pedido
                 </button>
               </div>
             </div>
@@ -854,194 +818,87 @@
         </div>
       </section>
 
-      <section id="about" class="about">
+      <!-- FAQ da Casinha -->
+      <section class="faq-section">
         <div class="container">
-          <div class="about-content">
-            <h2>Sobre a CM Restauração</h2>
-            <p>
-              Com mais de 20 anos de experiência e dedicação, oferecemos serviços completos de
-              restauração e montagem de móveis. Nossa missão é renovar seus
-              móveis com qualidade profissional e atendimento personalizado.
-            </p>
-            <div class="features">
-              <div class="feature">
-                <i class="fas fa-check-circle"></i>
-                <span>Qualidade Garantida</span>
+          <h2>Perguntas Frequentes</h2>
+          <div class="faq-grid">
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFaq(this)">
+                <h4>Qual o prazo de entrega?</h4>
+                <i class="fas fa-chevron-down"></i>
               </div>
-              <div class="feature">
-                <i class="fas fa-clock"></i>
-                <span>Pontualidade</span>
-              </div>
-              <div class="feature">
-                <i class="fas fa-dollar-sign"></i>
-                <span>Preços Justos</span>
+              <div class="faq-answer">
+                <p>
+                  O prazo varia de 15 a 30 dias úteis, dependendo do nível de
+                  personalização escolhido. Casinhas mais simples ficam prontas
+                  em 15 dias, enquanto projetos complexos podem levar até 30
+                  dias.
+                </p>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="contact">
-        <div class="container">
-          <h2>Entre em Contato</h2>
-          <div class="contact-content">
-            <div class="contact-info">
-              <div class="contact-item clickable">
-                <i class="fab fa-whatsapp"></i>
-                <div>
-                  <h3>WhatsApp</h3>
-                  <p>(43) 9.9980-9090</p>
-                  <span>Cláudio Michelato</span>
-                  <small>☝️ Clique para conversar</small>
-                </div>
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFaq(this)">
+                <h4>Posso escolher qualquer cor?</h4>
+                <i class="fas fa-chevron-down"></i>
               </div>
-              <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <div>
-                  <h3>Atendimento</h3>
-                  <p>Em Andirá e cidades vizinhas (frete a cobrar)</p>
-                </div>
+              <div class="faq-answer">
+                <p>
+                  Sim! Oferecemos paletas pré-definidas e também a opção de
+                  personalização completa das cores. Você pode escolher a cor
+                  exata que desejar para cada parte da casinha.
+                </p>
               </div>
             </div>
-            <div class="contact-form">
-              <form id="contactForm">
-                <input type="text" placeholder="Seu nome" required />
-                <textarea
-                  placeholder="Descreva o serviço que precisa"
-                  rows="5"
-                  required
-                ></textarea>
-                <button type="submit" class="btn-primary">
-                  Enviar Mensagem
-                </button>
-              </form>
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFaq(this)">
+                <h4>A casinha vem montada?</h4>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Sim, entregamos a casinha completamente montada e pronta para
+                  uso. Também fazemos o teste de qualidade antes da entrega.
+                </p>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Seção de Avaliação e Feedback -->
-      <section id="feedback" class="feedback-section">
-        <div class="container">
-          <div class="feedback-content">
-            <h2>Avalie Nosso Serviço</h2>
-            <p>Sua opinião é muito importante para nós! Conte-nos como foi sua experiência.</p>
-            
-            <div class="feedback-form-container">
-              <form id="feedbackForm" class="feedback-form">
-                <div class="rating-section">
-                  <label class="rating-label">Como você avalia nosso serviço?</label>
-                  <div class="star-rating" id="starRating">
-                    <span class="star" data-rating="1">&#9733;</span>
-                    <span class="star" data-rating="2">&#9733;</span>
-                    <span class="star" data-rating="3">&#9733;</span>
-                    <span class="star" data-rating="4">&#9733;</span>
-                    <span class="star" data-rating="5">&#9733;</span>
-                  </div>
-                  <div class="rating-text" id="ratingText">Clique nas estrelas para avaliar</div>
-                </div>
-
-                <div class="form-group">
-                  <label for="customerName">Seu nome:</label>
-                  <input type="text" id="customerName" name="customerName" placeholder="Digite seu nome" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="serviceType">Serviço utilizado:</label>
-                  <select id="serviceType" name="serviceType" required>
-                    <option value="">Selecione o serviço</option>
-                    <option value="restauracao">Restauração de Móveis</option>
-                    <option value="montagem">Montagem de Móveis</option>
-                    <option value="casinha">Casinha de Boneca</option>
-                    <option value="prateleiras">Prateleiras sob Medida</option>
-                    <option value="outros">Outros Serviços</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label for="feedbackText">Conte-nos sobre sua experiência:</label>
-                  <textarea 
-                    id="feedbackText" 
-                    name="feedbackText" 
-                    placeholder="Compartilhe sua opinião, sugestões ou elogios..." 
-                    rows="5" 
-                    required>
-                  </textarea>
-                </div>
-
-                <div class="form-group checkbox-group">
-                  <label class="checkbox-label">
-                    <input type="checkbox" id="allowPublish" name="allowPublish">
-                    <span class="checkmark"></span>
-                    Autorizo a publicação desta avaliação (seu nome será mantido privado)
-                  </label>
-                </div>
-
-                <button type="submit" class="btn-primary btn-feedback">
-                  <i class="fas fa-paper-plane"></i>
-                  Enviar Avaliação
-                </button>
-              </form>
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFaq(this)">
+                <h4>Qual o material utilizado?</h4>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Utilizamos MDF de alta qualidade, tratado contra umidade.
+                  Todas as peças são lixadas e recebem acabamento com tinta
+                  atóxica, segura para crianças.
+                </p>
+              </div>
             </div>
-
-            <!-- Exibição de Avaliações Anteriores -->
-            <div class="reviews-display">
-              <h3>O que nossos clientes dizem</h3>
-              <div class="reviews-grid" id="reviewsGrid">
-                <!-- Exemplo de avaliação -->
-                <div class="review-card">
-                  <div class="review-header">
-                    <div class="reviewer-info">
-                      <span class="reviewer-name">Maria S.</span>
-                      <span class="service-tag">Restauração</span>
-                    </div>
-                    <div class="review-stars">
-                      <span class="star filled">&#9733;</span>
-                      <span class="star filled">&#9733;</span>
-                      <span class="star filled">&#9733;</span>
-                      <span class="star filled">&#9733;</span>
-                      <span class="star filled">&#9733;</span>
-                    </div>
-                  </div>
-                  <p class="review-text">"Serviço excepcional! Meu móvel antigo ficou como novo. Recomendo muito!"</p>
-                  <span class="review-date">Janeiro 2025</span>
-                </div>
-
-                <div class="review-card">
-                  <div class="review-header">
-                    <div class="reviewer-info">
-                      <span class="reviewer-name">João P.</span>
-                      <span class="service-tag">Casinha de Boneca</span>
-                    </div>
-                    <div class="review-stars">
-                      <span class="star filled">&#9733;</span>
-                      <span class="star filled">&#9733;</span>
-                      <span class="star filled">&#9733;</span>
-                      <span class="star filled">&#9733;</span>
-                      <span class="star filled">&#9733;</span>
-                    </div>
-                  </div>
-                  <p class="review-text">"Minha filha adorou a casinha! Trabalho de qualidade e entrega pontual."</p>
-                  <span class="review-date">Dezembro 2024</span>
-                </div>
-
-                <div class="review-card">
-                  <div class="review-header">
-                    <div class="reviewer-info">
-                      <span class="reviewer-name">Ana L.</span>
-                      <span class="service-tag">Montagem</span>
-                    </div>
-                    <div class="review-stars">
-                      <span class="star filled">&#9733;</span>
-                      <span class="star filled">&#9733;</span>
-                      <span class="star filled">&#9733;</span>
-                      <span class="star filled">&#9733;</span>
-                      <span class="star">&#9733;</span>
-                    </div>
-                  </div>
-                  <p class="review-text">"Ótimo atendimento e preço justo. Montagem rápida e bem feita."</p>
-                  <span class="review-date">Novembro 2024</span>
-                </div>
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFaq(this)">
+                <h4>Vocês entregam em toda região?</h4>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Atendemos Andirá e cidades vizinhas. Para outras regiões,
+                  consulte o frete. Também oferecemos a opção de retirada no
+                  local.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFaq(this)">
+                <h4>Tem garantia?</h4>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Sim, oferecemos 15 dias de garantia contra defeitos de
+                  fabricação. Também prestamos suporte pós-venda para qualquer
+                  dúvida ou necessidade de reparo.
+                </p>
               </div>
             </div>
           </div>
@@ -1049,42 +906,96 @@
       </section>
     </main>
 
-    <footer>
-
+    <!-- Footer igual ao da página principal -->
     <footer class="site-footer">
       <div class="footer-container">
         <div class="footer-col pagamento">
           <h4>Meios de Pagamento</h4>
           <div class="pagamento-icones">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa" title="Visa" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard" title="Mastercard" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Elo_card_association_logo_-_black_text.svg" alt="Elo" title="Elo" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="American Express" title="American Express" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/NFC_logo.svg" alt="Pagamento por Aproximação" title="Pagamento por Aproximação" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo%E2%80%94pix_powered_by_Banco_Central_%28Brazil%2C_2020%29.svg" alt="Pix" title="Pix" />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png"
+              alt="Visa"
+              title="Visa"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png"
+              alt="Mastercard"
+              title="Mastercard"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/d/da/Elo_card_association_logo_-_black_text.svg"
+              alt="Elo"
+              title="Elo"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg"
+              alt="American Express"
+              title="American Express"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/7/75/NFC_logo.svg"
+              alt="Pagamento por Aproximação"
+              title="Pagamento por Aproximação"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo%E2%80%94pix_powered_by_Banco_Central_%28Brazil%2C_2020%29.svg"
+              alt="Pix"
+              title="Pix"
+            />
           </div>
         </div>
         <div class="footer-col envio">
           <h4>Formas de Envio</h4>
           <ul>
-            <li><span class="envio-inline"><i class="material-icons envio-icone">local_shipping</i>Entrega a domicílio</span></li>
-            <li><span class="envio-inline"><i class="material-icons envio-icone">store</i>Retirada no local</span></li>
+            <li>
+              <span class="envio-inline"
+                ><i class="material-icons envio-icone">local_shipping</i>Entrega
+                a domicílio</span
+              >
+            </li>
+            <li>
+              <span class="envio-inline"
+                ><i class="material-icons envio-icone">store</i>Retirada no
+                local</span
+              >
+            </li>
           </ul>
         </div>
         <div class="footer-col contato">
           <h4>Contato</h4>
           <ul>
-            <li><i class="fas fa-envelope"></i> <a href="mailto:claudio.michelato01@gmail.com">claudio.michelato01@gmail.com</a></li>
-            <li><i class="fas fa-map-marker-alt"></i> R. Guaicurus, 121, Vila Americana, Andirá - PR</li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:claudio.michelato01@gmail.com"
+                >claudio.michelato01@gmail.com</a
+              >
+            </li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i> R. Guaicurus, 121, Vila
+              Americana, Andirá - PR
+            </li>
           </ul>
         </div>
         <div class="footer-col selos">
           <h4>Segurança</h4>
           <div class="selos-seguranca">
-            <img src="https://googleparanegocioslocais.com.br/wp-content/uploads/2022/09/Site-Seguro_marcio_berber.webp" alt="Site Seguro - Google para Negócios Locais" width="120" style="cursor:pointer;" onclick="window.open('https://transparencyreport.google.com/safe-browsing/search?url=https:%2F%2Fj0aod3v.github.io%2FCMoveis%2F&hl=pt_BR', '_blank')" />
-            <img src="https://img.shields.io/badge/SSL%2FTLS%20Ativo-HTTPS%20Seguro-brightgreen?logo=letsencrypt&logoColor=white" alt="SSL/TLS Ativo - HTTPS Seguro" width="120">
+            <img
+              src="https://googleparanegocioslocais.com.br/wp-content/uploads/2022/09/Site-Seguro_marcio_berber.webp"
+              alt="Site Seguro - Google para Negócios Locais"
+              width="120"
+              style="cursor: pointer"
+              onclick="window.open('https://transparencyreport.google.com/safe-browsing/search?url=https:%2F%2Fj0aod3v.github.io%2FCMoveis%2F&hl=pt_BR', '_blank')"
+            />
+            <img
+              src="https://img.shields.io/badge/SSL%2FTLS%20Ativo-HTTPS%20Seguro-brightgreen?logo=letsencrypt&logoColor=white"
+              alt="SSL/TLS Ativo - HTTPS Seguro"
+              width="120"
+            />
             <div class="selos-info">
-              <img src="https://img.shields.io/badge/%E2%9C%94%20MEI-registrado%20no%20Brasil-4c1?style=flat&labelColor=555555" alt="MEI registrado no Brasil" />
+              <img
+                src="https://img.shields.io/badge/%E2%9C%94%20MEI-registrado%20no%20Brasil-4c1?style=flat&labelColor=555555"
+                alt="MEI registrado no Brasil"
+              />
               <div>CNPJ: 13.018.852/0001-58</div>
             </div>
           </div>
@@ -1092,19 +1003,55 @@
       </div>
       <div class="footer-bottom-bar">
         <div class="footer-tech">
-          <span style="white-space:nowrap;">Criado com</span>
-          <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" width="20" style="vertical-align:middle;"/>
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original-wordmark.svg" alt="HTML5" width="24" style="vertical-align:middle;"/>
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original-wordmark.svg" alt="CSS3" width="24" style="vertical-align:middle;"/>
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" width="22" style="vertical-align:middle;"/>
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code" width="22" style="vertical-align:middle;"/>
+          <span>Criado com</span>
+          <img
+            src="https://cdn.simpleicons.org/github/181717"
+            alt="GitHub"
+            width="20"
+          />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original-wordmark.svg"
+            alt="HTML5"
+            width="24"
+          />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original-wordmark.svg"
+            alt="CSS3"
+            width="24"
+          />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
+            alt="JavaScript"
+            width="22"
+          />
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg"
+            alt="VS Code"
+            width="22"
+          />
         </div>
-        <div class="footer-copy">&copy; 2025 CM Restauração de Móveis. Todos os direitos reservados.</div>
+        <div class="footer-copy">
+          &copy; 2025 CM Restauração de Móveis. Todos os direitos reservados.
+        </div>
       </div>
-      <a href="https://wa.me/5543999809090" class="whatsapp-float" target="_blank" title="Fale conosco no WhatsApp">
+      <a
+        href="https://wa.me/5543999809090"
+        class="whatsapp-float"
+        target="_blank"
+        title="Fale conosco no WhatsApp"
+      >
         <i class="fab fa-whatsapp"></i>
       </a>
     </footer>
+
+    <!-- Modal para galeria -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="modalImage" src="" alt="" />
+        <div id="modalCaption"></div>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>

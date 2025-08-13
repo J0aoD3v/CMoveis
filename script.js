@@ -1,1151 +1,891 @@
-// Lazy load do vídeo do YouTube na home
+// ========================
+// INICIALIZAÇÃO
+// ========================
 document.addEventListener("DOMContentLoaded", function () {
-  const lazyYoutube = document.getElementById("lazy-youtube");
-  if (lazyYoutube) {
-    const poster = lazyYoutube.querySelector(".video-poster");
-    if (poster) {
-      poster.addEventListener("click", function () {
-        lazyYoutube.innerHTML = `<iframe src=\"https://www.youtube.com/embed/KTV9ZMeIYkw?si=uyJjebn9JnLGVHSL&autoplay=1&mute=1\" title=\"CM Restauração - Nossos Serviços\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen style=\"width:100%;height:100%;border-radius:15px;\"></iframe>`;
-      });
-    }
+  initializeMenu();
+  initializeSmoothScrolling();
+  initializeAnimations();
+  initializeFeedbackSystem();
+
+  // Inicializa funcionalidades específicas da página
+  const currentPage = getCurrentPage();
+  if (currentPage === "casinha") {
+    initializeCasinhaPage();
   }
-});
-// Mobile menu toggle
-const hamburger = document.querySelector(".hamburger");
-const navMenu = document.querySelector(".nav-menu");
 
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("active");
-  navMenu.classList.toggle("active");
+  // Lazy load do YouTube na home
+  initializeYouTubeLazyLoad();
+
+  // Formulário de contato da home
+  initializeContactForm();
 });
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll(".nav-menu a").forEach((link) => {
-  link.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    navMenu.classList.remove("active");
-  });
-});
+// ========================
+// ROTEAMENTO E NAVEGAÇÃO
+// ========================
+function getCurrentPage() {
+  const path = window.location.pathname;
+  const page = path.substring(path.lastIndexOf("/") + 1);
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
+  if (page === "casinha.html" || page === "casinha") {
+    return "casinha";
+  } else if (page === "index.html" || page === "" || page === "/") {
+    return "home";
+  }
+  return "home";
+}
+
+function navigateTo(page) {
+  const baseUrl =
+    window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, "/");
+
+  if (page === "home") {
+    window.location.href = baseUrl + "index.html";
+  } else if (page === "casinha") {
+    window.location.href = baseUrl + "casinha.html";
+  }
+}
+
+// Função para redirecionar para seções específicas considerando a página atual
+function navigateToSection(sectionId) {
+  const currentPage = getCurrentPage();
+  const baseUrl =
+    window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, "/");
+
+  // Se estiver na página da casinha e tentar acessar seções da home
+  const homeSections = [
+    "home",
+    "highlights",
+    "services",
+    "about",
+    "contact",
+    "feedback",
+  ];
+  const casinhaSections = ["galeria", "personalizar"];
+
+  if (currentPage === "casinha" && homeSections.includes(sectionId)) {
+    // Redireciona para a página home com a seção específica
+    window.location.href = baseUrl + "index.html#" + sectionId;
+  } else if (currentPage === "home" && casinhaSections.includes(sectionId)) {
+    // Redireciona para a página da casinha com a seção específica
+    window.location.href = baseUrl + "casinha.html#" + sectionId;
+  } else {
+    // Navegação normal dentro da mesma página
+    const target = document.querySelector("#" + sectionId);
     if (target) {
       target.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
     }
-  });
-});
-
-// Contact form submission
-const contactForm = document.getElementById("contactForm");
-contactForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const formData = new FormData(this);
-  const name = this.querySelector('input[type="text"]').value;
-  const message = this.querySelector("textarea").value;
-
-  // Create WhatsApp message without phone
-  const whatsappMessage = `Ola! Meu nome e ${name}. ${message}`;
-  const whatsappURL = `https://wa.me/5543999809090?text=${encodeURIComponent(
-    whatsappMessage
-  )}`;
-
-  // Open WhatsApp
-  window.open(whatsappURL, "_blank");
-
-  // Reset form
-  this.reset();
-
-  // Show success message
-  alert("Redirecionando para o WhatsApp...");
-});
-
-// Navbar background on scroll
-window.addEventListener("scroll", () => {
-  const navbar = document.querySelector(".navbar");
-  if (window.scrollY > 100) {
-    navbar.style.background = "rgba(44, 62, 80, 0.95)";
-    navbar.style.backdropFilter = "blur(10px)";
-  } else {
-    navbar.style.background = "#2c3e50";
-    navbar.style.backdropFilter = "none";
   }
-});
+}
 
-// Animation on scroll
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: "0px 0px -50px 0px",
-};
+function initializeCasinhaPage() {
+  initializeImageGallery();
+  initializeMarketplace();
+  initializeFAQ();
+  initializeCustomization();
+}
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = "1";
+// ========================
+// LAZY LOAD YOUTUBE
+// ========================
+function initializeYouTubeLazyLoad() {
+  const lazyYoutube = document.getElementById("lazy-youtube");
+  if (lazyYoutube) {
+    const poster = lazyYoutube.querySelector(".video-poster");
+    if (poster) {
+      poster.addEventListener("click", function () {
+        lazyYoutube.innerHTML = `<iframe src="https://www.youtube.com/embed/KTV9ZMeIYkw?si=uyJjebn9JnLGVHSL&autoplay=1&mute=1" title="CM Restauração - Nossos Serviços" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="width:100%;height:100%;border-radius:15px;"></iframe>`;
+      });
     }
-  });
-}, observerOptions);
+  }
+}
 
-// Observe service cards and other elements
-document.addEventListener("DOMContentLoaded", () => {
-  const animatedElements = document.querySelectorAll(
-    ".service-card, .contact-item, .feature, .highlight-card"
-  );
+// ========================
+// MENU MOBILE E NAVEGAÇÃO
+// ========================
+function initializeMenu() {
+  const hamburger = document.querySelector(".hamburger");
+  const navMenu = document.querySelector(".nav-menu");
 
-  animatedElements.forEach((el) => {
-    el.style.opacity = "0";
-    el.style.transition = "opacity 0.6s ease";
-    observer.observe(el);
-  });
+  if (hamburger && navMenu) {
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+    });
 
-  // Initialize marketplace state
-  updateSizeDisplay();
-});
-
-// Click to call functionality
-document.querySelectorAll(".contact-item").forEach((item) => {
-  const phone = item.querySelector("p");
-  if (phone && phone.textContent.includes("(43)")) {
-    item.style.cursor = "pointer";
-    item.addEventListener("click", () => {
-      const phoneNumber = phone.textContent.replace(/\D/g, "");
-      const whatsappURL = `https://wa.me/55${phoneNumber}`;
-      window.open(whatsappURL, "_blank");
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll(".nav-menu a").forEach((link) => {
+      link.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+      });
     });
   }
-});
+}
 
-// Loading animation
-window.addEventListener("load", () => {
-  document.body.style.opacity = "0";
-  document.body.style.transition = "opacity 0.5s ease";
+// ========================
+// SMOOTH SCROLLING
+// ========================
+function initializeSmoothScrolling() {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const sectionId = this.getAttribute("href").replace("#", "");
+      navigateToSection(sectionId);
+    });
+  });
+}
 
-  setTimeout(() => {
-    document.body.style.opacity = "1";
-  }, 100);
-});
+// ========================
+// ANIMAÇÕES
+// ========================
+function initializeAnimations() {
+  // Navbar background on scroll
+  window.addEventListener("scroll", () => {
+    const navbar = document.querySelector(".navbar");
+    if (navbar) {
+      if (window.scrollY > 100) {
+        navbar.style.background = "rgba(44, 62, 80, 0.95)";
+        navbar.style.backdropFilter = "blur(10px)";
+      } else {
+        navbar.style.background = "#2c3e50";
+        navbar.style.backdropFilter = "none";
+      }
+    }
+  });
 
-// Marketplace functionality
-let currentSelection = {
-  size: "pequena",
-  varandaStates: {
-    pequena: false,
-    media: false,
-    grande: false,
-  },
-  customSize: {
-    width: 1.2,
-    length: 1.2,
-    height: 1.8,
-    hasVeranda: true,
-  },
+  // Intersection Observer para animações no scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("animate");
+      }
+    });
+  }, observerOptions);
+
+  // Observa elementos que devem animar
+  document
+    .querySelectorAll(".service-card, .highlight-card, .stat-item")
+    .forEach((el) => {
+      observer.observe(el);
+    });
+}
+
+// ========================
+// GALERIA DE IMAGENS DA CASINHA
+// ========================
+function openModal(img) {
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImage");
+  const caption = document.getElementById("modalCaption");
+
+  if (modal && modalImg && caption) {
+    modal.style.display = "block";
+    modalImg.src = img.src;
+    caption.innerHTML = img.alt;
+
+    // Adiciona classe para animação
+    setTimeout(() => {
+      modal.classList.add("show");
+    }, 10);
+  }
+}
+
+function closeModal() {
+  const modal = document.getElementById("imageModal");
+  if (modal) {
+    modal.classList.remove("show");
+    setTimeout(() => {
+      modal.style.display = "none";
+    }, 300);
+  }
+}
+
+function initializeImageGallery() {
+  // Adiciona eventos de teclado para fechar modal
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      closeModal();
+    }
+  });
+}
+
+// ========================
+// MARKETPLACE DA CASINHA
+// ========================
+let currentConfig = {
+  size: "grande",
+  hasVaranda: false,
   palette: "candy",
-  customPalette: null,
   window: "simples",
   door: "simples",
   extras: [],
+  customDimensions: {
+    width: 1.6,
+    length: 1.6,
+    height: 2.0,
+    hasVeranda: true,
+  },
 };
 
-let basePrices = {
-  pequena: 1800,
-  media: 2400,
-  grande: 3100,
-  custom: 0, // Will be calculated based on dimensions
+let priceData = {
+  grande: { base: 3100, varanda: 3500 },
 };
 
-let varandaPrices = {
-  pequena: 400,
-  media: 400,
-  grande: 400,
-};
+function initializeMarketplace() {
+  if (getCurrentPage() !== "casinha") return;
 
-// Pantone Color Palettes
-const pantonePalettes = {
+  updateTotalPrice();
+
+  // Event listeners para todas as opções
+  document.querySelectorAll("[data-option]").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      handleOptionSelect(this);
+    });
+  });
+
+  // Event listeners para checkboxes de extras
+  document
+    .querySelectorAll('input[data-option="extra"]')
+    .forEach((checkbox) => {
+      checkbox.addEventListener("change", function () {
+        handleExtraToggle(this);
+      });
+    });
+
+  // Event listeners especiais para checkboxes de varanda
+  document.querySelectorAll("input[data-size]").forEach((checkbox) => {
+    checkbox.addEventListener("click", function (e) {
+      e.stopPropagation(); // Previne o evento do botão pai
+    });
+
+    checkbox.addEventListener("change", function () {
+      toggleVarandaInline(this);
+    });
+  });
+
+  // Previne clique no label da varanda de ativar o botão
+  document.querySelectorAll(".option-btn .checkbox-option").forEach((label) => {
+    label.addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+  });
+}
+
+function handleOptionSelect(btn) {
+  const option = btn.dataset.option;
+  const value = btn.dataset.value;
+  const price = parseInt(btn.dataset.price) || 0;
+
+  // Remove active de outros botões do mesmo grupo
+  const group = btn.closest(".option-buttons");
+  if (group) {
+    group
+      .querySelectorAll(".option-btn")
+      .forEach((b) => b.classList.remove("active"));
+  }
+
+  // Adiciona active ao botão clicado
+  btn.classList.add("active");
+
+  // Atualiza configuração
+  currentConfig[option] = value;
+
+  // Lógica específica para tamanhos
+  if (option === "size") {
+    handleSizeChange(value);
+  }
+
+  updateTotalPrice();
+}
+
+function handleSizeChange(size) {
+  const customPanel = document.getElementById("customSizePanel");
+
+  if (size === "custom" && customPanel) {
+    customPanel.style.display = "block";
+    updateCustomDimensions();
+  } else if (customPanel) {
+    customPanel.style.display = "none";
+    currentConfig.size = size;
+  }
+
+  // Reset varanda checkboxes
+  document.querySelectorAll("[data-size]").forEach((checkbox) => {
+    checkbox.checked = false;
+  });
+  currentConfig.hasVaranda = false;
+}
+
+function toggleVarandaInline(checkbox) {
+  const size = checkbox.dataset.size;
+  currentConfig.hasVaranda = checkbox.checked;
+
+  // Uncheck other varanda checkboxes
+  document.querySelectorAll("[data-size]").forEach((cb) => {
+    if (cb !== checkbox) cb.checked = false;
+  });
+
+  updateTotalPrice();
+}
+
+function handleExtraToggle(checkbox) {
+  const value = checkbox.dataset.value;
+
+  if (checkbox.checked) {
+    if (!currentConfig.extras.includes(value)) {
+      currentConfig.extras.push(value);
+    }
+  } else {
+    currentConfig.extras = currentConfig.extras.filter(
+      (extra) => extra !== value
+    );
+  }
+
+  updateTotalPrice();
+}
+
+function updateTotalPrice() {
+  const totalElement = document.getElementById("totalPrice");
+  if (!totalElement) return;
+
+  let total = 0;
+
+  // Preço base do tamanho
+  if (currentConfig.size === "custom") {
+    total = calculateCustomPrice();
+  } else {
+    const sizeData = priceData[currentConfig.size];
+    total = currentConfig.hasVaranda ? sizeData.varanda : sizeData.base;
+  }
+
+  // Adiciona preço das opções
+  document.querySelectorAll(".option-btn.active[data-price]").forEach((btn) => {
+    const price = parseInt(btn.dataset.price) || 0;
+    total += price;
+  });
+
+  // Adiciona preço dos extras
+  document
+    .querySelectorAll('input[data-option="extra"]:checked')
+    .forEach((checkbox) => {
+      const price = parseInt(checkbox.dataset.price) || 0;
+      total += price;
+    });
+
+  totalElement.textContent = total.toLocaleString();
+}
+
+function calculateCustomPrice() {
+  const dims = currentConfig.customDimensions;
+  const area = dims.width * dims.length;
+  const volume = area * dims.height;
+
+  // Fórmula base: R$ 1000 por m³ + R$ 500 por m² de área
+  let basePrice = volume * 1000 + area * 500;
+
+  // Acréscimo por varanda
+  if (dims.hasVeranda) {
+    const varandaArea = dims.width * 0.6; // 60cm de profundidade
+    basePrice += varandaArea * 400;
+  }
+
+  return Math.round(basePrice);
+}
+
+function updateCustomDimensions() {
+  const widthEl = document.getElementById("customWidth");
+  const lengthEl = document.getElementById("customLength");
+  const heightEl = document.getElementById("customHeight");
+  const verandaEl = document.getElementById("includeVeranda");
+  const previewEl = document.getElementById("previewText");
+
+  if (!widthEl || !lengthEl || !heightEl || !verandaEl || !previewEl) return;
+
+  const width = parseFloat(widthEl.value);
+  const length = parseFloat(lengthEl.value);
+  const height = parseFloat(heightEl.value);
+  const hasVeranda = verandaEl.checked;
+
+  currentConfig.customDimensions = { width, length, height, hasVeranda };
+
+  // Atualiza preview
+  const totalLength = hasVeranda
+    ? Math.round((length + 0.6) * 10) / 10
+    : length;
+  const previewText = `
+    Área Útil: ${width}m × ${length}m<br/>
+    ${hasVeranda ? `Com Varanda: ${width}m × ${totalLength}m<br/>` : ""}
+    Altura: ${height}m
+  `;
+
+  previewEl.innerHTML = previewText;
+  updateTotalPrice();
+}
+
+function applyCustomSize() {
+  updateCustomDimensions();
+  // Simula clique no botão personalizado para ativar
+  const customBtn = document.querySelector('[data-value="custom"]');
+  if (customBtn && !customBtn.classList.contains("active")) {
+    customBtn.click();
+  }
+}
+
+// ========================
+// SISTEMA DE CORES/PALETAS
+// ========================
+const palettes = {
   candy: {
-    name: "🧁 Doce & Infantil",
-    description: "Candy/Pastel",
-    colors: {
-      wall: { name: "Pantone 9280 C (Lilac Hint)", hex: "#E5D0EC" },
-      roof: { name: "Pantone 705 C", hex: "#FFDDE1" },
-      windows: { name: "Pantone 290 C", hex: "#B4D9F5" },
-      doors: { name: "Pantone 7606 C", hex: "#C48A85" },
-      floor: { name: "Pantone 7499 C", hex: "#F8EFD4" },
-      fence: { name: "Pantone 670 C", hex: "#E4A9C3" },
-    },
+    wall: "#E5D0EC",
+    roof: "#FFDDE1",
+    windows: "#B4D9F5",
+    doors: "#C48A85",
+    floor: "#F8EFD4",
   },
   nature: {
-    name: "🌿 Natureza & Tranquilidade",
-    description: "Calm/Zen",
-    colors: {
-      wall: { name: "Pantone 7494 C", hex: "#A8C09C" },
-      roof: { name: "Pantone 5535 C", hex: "#4B5B4B" },
-      windows: { name: "Pantone 7541 C", hex: "#D9E1E2" },
-      doors: { name: "Pantone 7528 C", hex: "#D6C4B0" },
-      floor: { name: "Pantone 7527 C", hex: "#DDD6CE" },
-      fence: { name: "Pantone 5565 C", hex: "#B6C8B1" },
-    },
+    wall: "#A8C09C",
+    roof: "#4B5B4B",
+    windows: "#D9E1E2",
+    doors: "#D6C4B0",
+    floor: "#DDD6CE",
   },
   classic: {
-    name: "🏛️ Clássico & Elegante",
-    description: "Colonial/Antigo",
-    colors: {
-      wall: { name: "Pantone 7529 C", hex: "#CBBBA0" },
-      roof: { name: "Pantone 7596 C", hex: "#8B5B4A" },
-      windows: { name: "Pantone 5493 C", hex: "#B7D9D3" },
-      doors: { name: "Pantone 1807 C", hex: "#994F4D" },
-      floor: { name: "Pantone 7530 C", hex: "#B8A99A" },
-      fence: { name: "Pantone 7531 C", hex: "#85715E" },
-    },
+    wall: "#CBBBA0",
+    roof: "#8B5B4A",
+    windows: "#B7D9D3",
+    doors: "#994F4D",
+    floor: "#B8A99A",
   },
   vibrant: {
-    name: "🌈 Vibrante & Criativo",
-    description: "Lúdico/Artesanal",
-    colors: {
-      wall: { name: "Pantone 165 C", hex: "#FF6A13" },
-      roof: { name: "Pantone 280 C", hex: "#012169" },
-      windows: { name: "Pantone 229 C", hex: "#651E38" },
-      doors: { name: "Pantone 110 C", hex: "#D4A017" },
-      floor: { name: "Pantone 7401 C", hex: "#F8E08E" },
-      fence: { name: "Pantone 297 C", hex: "#71C5E8" },
-    },
+    wall: "#FF6A13",
+    roof: "#012169",
+    windows: "#651E38",
+    doors: "#D4A017",
+    floor: "#F8E08E",
   },
   minimal: {
-    name: "⚡ Minimalista & Moderno",
-    description: "Escandinavo",
-    colors: {
-      wall: { name: "Pantone Cool Gray 1 C", hex: "#F5F6F7" },
-      roof: { name: "Pantone 430 C", hex: "#A2AAAD" },
-      windows: { name: "Pantone 7541 C", hex: "#D9E1E2" },
-      doors: { name: "Pantone 432 C", hex: "#1F2A44" },
-      floor: { name: "Pantone 7527 C", hex: "#DDD6CE" },
-      fence: { name: "Pantone 429 C", hex: "#B1B3B3" },
-    },
+    wall: "#F5F6F7",
+    roof: "#A2AAAD",
+    windows: "#D9E1E2",
+    doors: "#1F2A44",
+    floor: "#DDD6CE",
   },
 };
 
-function openMarketplace(product) {
-  document.getElementById("marketplace").style.display = "block";
-  document.getElementById("marketplace").scrollIntoView({ behavior: "smooth" });
-  calculatePrice();
-  // Initialize palette on first open
-  loadPaletteToControls("candy");
-}
-
-function closeMarketplace() {
-  document.getElementById("marketplace").style.display = "none";
-  document.getElementById("home").scrollIntoView({ behavior: "smooth" });
-}
-
-// Palette Functions
-function selectPalette(paletteKey) {
-  // Remove active from all palette cards
+function selectPalette(paletteName) {
+  // Remove active de outras paletas
   document.querySelectorAll(".palette-card").forEach((card) => {
     card.classList.remove("active");
   });
 
-  // Add active to selected palette
-  document
-    .querySelector(`[data-palette="${paletteKey}"]`)
-    .classList.add("active");
+  // Ativa paleta selecionada
+  const selectedCard = document.querySelector(
+    `[data-palette="${paletteName}"]`
+  );
+  if (selectedCard) {
+    selectedCard.classList.add("active");
+  }
 
-  // Update current selection
-  currentSelection.palette = paletteKey;
-  currentSelection.customPalette = null;
+  currentConfig.palette = paletteName;
 
-  // Load palette colors into the customization controls
-  loadPaletteToControls(paletteKey);
+  // Atualiza controles de cor personalizados
+  const palette = palettes[paletteName];
+  const wallEl = document.getElementById("customWall");
+  const roofEl = document.getElementById("customRoof");
+  const windowsEl = document.getElementById("customWindows");
+  const doorsEl = document.getElementById("customDoors");
+  const floorEl = document.getElementById("customFloor");
 
-  console.log("Paleta selecionada:", paletteKey);
+  if (wallEl) wallEl.value = palette.wall;
+  if (roofEl) roofEl.value = palette.roof;
+  if (windowsEl) windowsEl.value = palette.windows;
+  if (doorsEl) doorsEl.value = palette.doors;
+  if (floorEl) floorEl.value = palette.floor;
+
+  updatePalettePreview();
 }
 
-function loadPaletteToControls(paletteKey) {
-  const palette = pantonePalettes[paletteKey];
-  if (!palette) return;
+function toggleColorCustomization() {
+  const section = document.getElementById("paletteCustomization");
+  const icon = document.getElementById("expandColorsIcon");
+  const text = document.getElementById("expandColorsText");
 
-  // Update color inputs with palette colors
-  document.getElementById("customWall").value = palette.colors.wall.hex;
-  document.getElementById("customRoof").value = palette.colors.roof.hex;
-  document.getElementById("customWindows").value = palette.colors.windows.hex;
-  document.getElementById("customDoors").value = palette.colors.doors.hex;
-  document.getElementById("customFloor").value = palette.colors.floor.hex;
+  if (!section || !icon || !text) return;
 
-  // Update the preview
-  updatePalettePreview();
+  if (section.style.display === "none" || !section.style.display) {
+    section.style.display = "block";
+    icon.style.transform = "rotate(180deg)";
+    text.textContent = "Ocultar personalização de cores";
+  } else {
+    section.style.display = "none";
+    icon.style.transform = "rotate(0deg)";
+    text.textContent = "Não é o que queria? Escolha sua cor aqui";
+  }
 }
 
 function updatePalettePreview() {
   const preview = document.getElementById("mainPalettePreview");
   if (!preview) return;
 
-  const parts = ["Wall", "Roof", "Windows", "Doors", "Floor"];
   const strips = preview.querySelectorAll(".color-strip");
+  const wallEl = document.getElementById("customWall");
+  const roofEl = document.getElementById("customRoof");
+  const windowsEl = document.getElementById("customWindows");
+  const doorsEl = document.getElementById("customDoors");
+  const floorEl = document.getElementById("customFloor");
 
-  parts.forEach((part, index) => {
-    const input = document.getElementById(`custom${part}`);
-    if (input && strips[index]) {
-      strips[index].style.background = input.value;
-    }
-  });
+  if (
+    strips.length >= 5 &&
+    wallEl &&
+    roofEl &&
+    windowsEl &&
+    doorsEl &&
+    floorEl
+  ) {
+    strips[0].style.background = wallEl.value;
+    strips[1].style.background = roofEl.value;
+    strips[2].style.background = windowsEl.value;
+    strips[3].style.background = doorsEl.value;
+    strips[4].style.background = floorEl.value;
+  }
 }
 
 function applyCurrentPalette() {
-  const customColors = {
-    wall: document.getElementById("customWall").value,
-    roof: document.getElementById("customRoof").value,
-    windows: document.getElementById("customWindows").value,
-    doors: document.getElementById("customDoors").value,
-    floor: document.getElementById("customFloor").value,
+  const wallEl = document.getElementById("customWall");
+  const roofEl = document.getElementById("customRoof");
+  const windowsEl = document.getElementById("customWindows");
+  const doorsEl = document.getElementById("customDoors");
+  const floorEl = document.getElementById("customFloor");
+
+  if (!wallEl || !roofEl || !windowsEl || !doorsEl || !floorEl) return;
+
+  // Salva paleta personalizada
+  currentConfig.customPalette = {
+    wall: wallEl.value,
+    roof: roofEl.value,
+    windows: windowsEl.value,
+    doors: doorsEl.value,
+    floor: floorEl.value,
   };
 
-  currentSelection.customPalette = customColors;
-  currentSelection.palette = "custom";
-
-  // Remove active from predefined palettes
-  document.querySelectorAll(".palette-card").forEach((card) => {
-    card.classList.remove("active");
-  });
-
-  // Visual feedback
+  // Feedback visual
   const button = document.querySelector(".btn-apply-palette");
-  const originalText = button.innerHTML;
-  button.innerHTML = '<i class="fas fa-check"></i> Paleta Aplicada!';
-  button.style.background = "linear-gradient(135deg, #27ae60, #2ecc71)";
+  if (button) {
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-check"></i> Paleta Aplicada!';
+    button.style.background = "#27ae60";
 
-  setTimeout(() => {
-    button.innerHTML = originalText;
-    button.style.background = "linear-gradient(135deg, #f39c12, #e67e22)";
-  }, 2000);
-
-  console.log("Paleta aplicada:", customColors);
+    setTimeout(() => {
+      button.innerHTML = originalText;
+      button.style.background = "";
+    }, 2000);
+  }
 }
 
-function openContact(service) {
-  // Create service request form
-  const customerName = prompt("Digite seu nome:");
-  if (!customerName) return;
-
-  let serviceDetails = "";
-  let locationInfo = "";
-
-  if (service === "restauracao") {
-    // Specific questions for restoration service
-    const furnitureType = prompt(
-      "Que tipo de móvel precisa restaurar? (Ex: mesa, cadeira, armário, etc.)"
-    );
-    if (!furnitureType) return;
-
-    const furnitureCondition = prompt(
-      "Qual o estado atual do móvel? (Ex: riscado, desbotado, quebrado, etc.)"
-    );
-    if (!furnitureCondition) return;
-
-    const desiredFinish = prompt(
-      "Que tipo de acabamento deseja? (Ex: verniz natural, cor específica, etc.)"
-    );
-    if (!desiredFinish) return;
-
-    // Ask for delivery/pickup preference for restoration
-    const serviceLocation = confirm(
-      "Escolha o local do serviço:\n\nOK = Buscar e entregar no meu endereço\nCancelar = Levar até a CM Restauração"
-    );
-
-    if (serviceLocation) {
-      // Service with pickup and delivery
-      const street = prompt("Rua/Avenida:");
-      if (!street) return;
-
-      const number = prompt("Número:");
-      if (!number) return;
-
-      const neighborhood = prompt("Bairro:");
-      if (!neighborhood) return;
-
-      const city = prompt("Cidade:");
-      if (!city) return;
-
-      const complement = prompt(
-        "Complemento (opcional - apartamento, bloco, etc):"
-      );
-
-      locationInfo = `BUSCA E ENTREGA NO ENDEREÇO:\n`;
-      locationInfo += `${street}, ${number}\n`;
-      if (complement) locationInfo += `${complement}\n`;
-      locationInfo += `${neighborhood} - ${city}\n`;
-    } else {
-      // Customer brings items to workshop
-      locationInfo = `ENTREGA NA OFICINA:\n`;
-      locationInfo += `Cliente levará até a CM Restauração de Móveis\n`;
-      locationInfo += `Região de Londrina\n`;
-    }
-
-    serviceDetails = `TIPO DE MÓVEL: ${furnitureType}\n`;
-    serviceDetails += `ESTADO ATUAL: ${furnitureCondition}\n`;
-    serviceDetails += `ACABAMENTO DESEJADO: ${desiredFinish}\n`;
-  } else if (service === "montagem") {
-    // Specific questions for assembly service
-    const furnitureToAssemble = prompt(
-      "Que móvel precisa montar? (Ex: guarda-roupa, cama, estante, etc.)"
-    );
-    if (!furnitureToAssemble) return;
-
-    const furnitureBrand = prompt(
-      "Qual a marca/loja? (Ex: Casas Bahia, Magazine Luiza, etc.)"
-    );
-    if (!furnitureBrand) return;
-
-    const hasInstructions = confirm(
-      "Tem o manual de instruções?\n\nOK = Sim\nCancelar = Não"
-    );
-
-    // Ask for service location for assembly
-    const serviceLocation = confirm(
-      "Escolha o local da montagem:\n\nOK = No meu endereço\nCancelar = Levar até a CM Restauração para montar"
-    );
-
-    if (serviceLocation) {
-      // Assembly at customer's location
-      const street = prompt("Rua/Avenida:");
-      if (!street) return;
-
-      const number = prompt("Número:");
-      if (!number) return;
-
-      const neighborhood = prompt("Bairro:");
-      if (!neighborhood) return;
-
-      const city = prompt("Cidade:");
-      if (!city) return;
-
-      const complement = prompt(
-        "Complemento (opcional - apartamento, bloco, etc):"
-      );
-
-      locationInfo = `MONTAGEM NO ENDEREÇO:\n`;
-      locationInfo += `${street}, ${number}\n`;
-      if (complement) locationInfo += `${complement}\n`;
-      locationInfo += `${neighborhood} - ${city}\n`;
-    } else {
-      // Customer brings items to workshop
-      locationInfo = `MONTAGEM NA OFICINA:\n`;
-      locationInfo += `Cliente levará até a CM Restauração de Móveis\n`;
-      locationInfo += `Região de Londrina\n`;
-    }
-
-    serviceDetails = `MÓVEL PARA MONTAR: ${furnitureToAssemble}\n`;
-    serviceDetails += `MARCA/LOJA: ${furnitureBrand}\n`;
-    serviceDetails += `MANUAL DE INSTRUÇÕES: ${
-      hasInstructions ? "Sim" : "Não"
-    }\n`;
-  } else {
-    // Generic service form for other services
-    const additionalInfo = prompt("Descreva o serviço que precisa:");
-    if (!additionalInfo) return;
-
-    // Ask for delivery/pickup preference
-    const serviceLocation = confirm(
-      "Escolha o local do serviço:\n\nOK = No meu endereço\nCancelar = Levar até a CM Restauração"
-    );
-
-    if (serviceLocation) {
-      // Service at customer's location
-      const street = prompt("Rua/Avenida:");
-      if (!street) return;
-
-      const number = prompt("Número:");
-      if (!number) return;
-
-      const neighborhood = prompt("Bairro:");
-      if (!neighborhood) return;
-
-      const city = prompt("Cidade:");
-      if (!city) return;
-
-      const complement = prompt(
-        "Complemento (opcional - apartamento, bloco, etc):"
-      );
-
-      locationInfo = `ATENDIMENTO NO ENDEREÇO:\n`;
-      locationInfo += `${street}, ${number}\n`;
-      if (complement) locationInfo += `${complement}\n`;
-      locationInfo += `${neighborhood} - ${city}\n`;
-    } else {
-      // Customer brings items to workshop
-      locationInfo = `ATENDIMENTO NA OFICINA:\n`;
-      locationInfo += `Cliente levará até a CM Restauração de Móveis\n`;
-      locationInfo += `Região de Londrina\n`;
-    }
-
-    serviceDetails = `DESCRIÇÃO DO SERVIÇO:\n${additionalInfo}\n`;
-  }
-
-  // Create WhatsApp message
-  let message = "";
-  switch (service) {
-    case "restauracao":
-      message = "SOLICITAÇÃO DE RESTAURAÇÃO\n\n";
-      break;
-    case "montagem":
-      message = "SOLICITAÇÃO DE MONTAGEM\n\n";
-      break;
-    default:
-      message = `SOLICITAÇÃO DE SERVIÇO\n\n`;
-  }
-
-  message += `Cliente: ${customerName}\n\n`;
-  message += locationInfo + `\n`;
-  message += serviceDetails + `\n`;
-  message += `Aguardo contato para agendamento e orçamento!`;
-
-  const whatsappURL = `https://wa.me/5543999809090?text=${encodeURIComponent(
-    message
-  )}`;
-  window.open(whatsappURL, "_blank");
-
-  alert("Solicitação enviada! Redirecionando para o WhatsApp...");
-}
-
-// Gallery functionality
+// ========================
+// MUDANÇA DE IMAGEM PRINCIPAL
+// ========================
 function changeMainImage(thumbnail) {
   const mainImage = document.getElementById("mainImage");
-  if (mainImage) {
-    mainImage.src = thumbnail.src;
+  const currentActive = document.querySelector(".thumbnail.active");
+
+  if (!mainImage) return;
+
+  // Remove active da thumbnail atual
+  if (currentActive) {
+    currentActive.classList.remove("active");
   }
 
-  // Update active thumbnail
-  document.querySelectorAll(".thumbnail").forEach((thumb) => {
-    thumb.classList.remove("active");
-  });
+  // Adiciona active à nova thumbnail
   thumbnail.classList.add("active");
-}
 
-// Option selection functionality
-document.addEventListener("click", (e) => {
-  if (
-    e.target.classList.contains("option-btn") ||
-    e.target.closest(".option-btn")
-  ) {
-    const button = e.target.classList.contains("option-btn")
-      ? e.target
-      : e.target.closest(".option-btn");
-    const optionType = button.dataset.option;
-    const optionValue = button.dataset.value;
-
-    // Remove active class from siblings in the same group
-    const parent = button.closest(".option-buttons") || button.parentNode;
-    parent.querySelectorAll(".option-btn").forEach((btn) => {
-      btn.classList.remove("active");
-    });
-
-    // Add active class to clicked button
-    button.classList.add("active");
-
-    // Update selection
-    currentSelection[optionType] = optionValue;
-
-    // Show/hide custom size panel
-    if (optionType === "size") {
-      const customPanel = document.getElementById("customSizePanel");
-      if (optionValue === "custom") {
-        customPanel.style.display = "block";
-        updateCustomSizePreview();
-      } else {
-        customPanel.style.display = "none";
-        updateSizeDisplay();
-      }
-    }
-
-    calculatePrice();
-  }
-});
-
-// Handle checkboxes
-document.addEventListener("change", (e) => {
-  if (e.target.type === "checkbox" && e.target.dataset.option === "extra") {
-    const extraValue = e.target.dataset.value;
-
-    if (e.target.checked) {
-      if (!currentSelection.extras.includes(extraValue)) {
-        currentSelection.extras.push(extraValue);
-      }
-    } else {
-      currentSelection.extras = currentSelection.extras.filter(
-        (extra) => extra !== extraValue
-      );
-    }
-
-    calculatePrice();
-  }
-
-  // Handle custom size inputs
-  if (
-    e.target.id === "includeVeranda" ||
-    e.target.id === "customWidth" ||
-    e.target.id === "customLength" ||
-    e.target.id === "customHeight"
-  ) {
-    updateCustomSizePreview();
-  }
-});
-
-// Custom size functions
-function updateCustomSizePreview() {
-  const width = parseFloat(document.getElementById("customWidth").value) || 1.2;
-  const length =
-    parseFloat(document.getElementById("customLength").value) || 1.2;
-  const height =
-    parseFloat(document.getElementById("customHeight").value) || 1.8;
-  const hasVeranda = document.getElementById("includeVeranda").checked;
-
-  currentSelection.customSize = { width, length, height, hasVeranda };
-
-  const previewText = document.getElementById("previewText");
-  if (previewText) {
-    const totalLength = hasVeranda ? length + 0.6 : length;
-    previewText.innerHTML = `
-      Área Útil: ${width.toFixed(1)}m × ${length.toFixed(1)}m<br>
-      ${
-        hasVeranda
-          ? `Com Varanda: ${width.toFixed(1)}m × ${totalLength.toFixed(1)}m<br>`
-          : ""
-      }
-      Altura: ${height.toFixed(1)}m
-    `;
-  }
-}
-
-function applyCustomSize() {
-  // Update the current selection
-  updateCustomSizePreview();
-
-  // Calculate custom price
-  calculatePrice();
-
-  // Visual feedback
-  const button = document.querySelector(".btn-apply-size");
-  const originalText = button.innerHTML;
-  button.innerHTML = '<i class="fas fa-check"></i> Dimensões Aplicadas!';
-  button.style.background = "linear-gradient(135deg, #27ae60, #2ecc71)";
-
+  // Muda a imagem principal com efeito
+  mainImage.style.opacity = "0.5";
   setTimeout(() => {
-    button.innerHTML = originalText;
-    button.style.background = "linear-gradient(135deg, #3498db, #2980b9)";
-  }, 2000);
+    mainImage.src = thumbnail.src;
+    mainImage.alt = thumbnail.alt;
+    mainImage.style.opacity = "1";
+  }, 200);
 }
 
-function toggleVarandaInline(checkbox) {
-  const size = checkbox.dataset.size;
-  currentSelection.varandaStates[size] = checkbox.checked;
-
-  // Update display for this specific size and calculate price
-  updateSizeDisplayForButton(size);
-  calculatePrice();
+// ========================
+// REDIRECIONAMENTOS DOS DESTAQUES
+// ========================
+function openMarketplace(productType) {
+  if (productType === "casinha-boneca") {
+    navigateTo("casinha");
+  }
 }
 
-function updateSizeDisplayForButton(size) {
-  const button = document.querySelector(`[data-value="${size}"]`);
-  if (!button) return;
+function openContact(serviceType) {
+  // Redireciona para seção de contato com serviço pré-selecionado
+  navigateToSection("contact");
 
-  const priceDisplay = button.querySelector(".price-display");
-  const varandaInfo = button.querySelector(".varanda-info");
-  const basePrice = parseInt(button.dataset.price);
-  const varandaPrice = varandaPrices[size] || 400;
-  const hasVaranda = currentSelection.varandaStates[size];
+  // Aguarda um pouco para a página carregar e então seleciona o serviço
+  setTimeout(() => {
+    const serviceSelect = document.querySelector("#contactForm select");
+    if (serviceSelect) {
+      const serviceMap = {
+        restauracao: "Restauração",
+        montagem: "Montagem/Desmontagem",
+      };
 
-  if (hasVaranda) {
-    const totalPrice = basePrice + varandaPrice;
-    priceDisplay.textContent = `R$ ${totalPrice.toLocaleString("pt-BR")}`;
-
-    // Update dimensions info
-    let dimensions = "";
-    if (size === "pequena") {
-      dimensions = "🏡 Com Varanda: 1,20m × 1,80m • 📏 Altura: 1,80m";
-    } else if (size === "media") {
-      dimensions = "🏡 Com Varanda: 1,40m × 2,00m • 📏 Altura: 2,00m";
-    } else if (size === "grande") {
-      dimensions = "🏡 Com Varanda: 1,60m × 2,20m • 📏 Altura: 2,00m";
+      const serviceName = serviceMap[serviceType];
+      if (serviceName) {
+        for (let option of serviceSelect.options) {
+          if (option.text.includes(serviceName)) {
+            option.selected = true;
+            break;
+          }
+        }
+      }
     }
-    varandaInfo.textContent = dimensions;
-  } else {
-    priceDisplay.textContent = `R$ ${basePrice.toLocaleString("pt-BR")}`;
-
-    // Update dimensions info
-    let dimensions = "";
-    if (size === "pequena") {
-      dimensions = "📏 Altura: 1,80m";
-    } else if (size === "media") {
-      dimensions = "📏 Altura: 2,00m";
-    } else if (size === "grande") {
-      dimensions = "📏 Altura: 2,00m";
-    }
-    varandaInfo.textContent = dimensions;
-  }
+  }, 500);
 }
 
-// Função legacy removida - agora usamos toggleVarandaInline
-function toggleVaranda() {
-  // Não usada mais
-}
-
-function updateSizeDisplay() {
-  // Atualiza todas as opções de tamanho
-  ["pequena", "media", "grande"].forEach((size) => {
-    updateSizeDisplayForButton(size);
-  });
-}
-
-function calculatePrice() {
-  let total = basePrices[currentSelection.size] || 1800;
-
-  // Add varanda price if selected for current size
-  if (
-    currentSelection.size !== "custom" &&
-    currentSelection.varandaStates[currentSelection.size]
-  ) {
-    total += varandaPrices[currentSelection.size] || 400;
-  }
-
-  // Calculate custom size price
-  if (currentSelection.size === "custom") {
-    const { width, length, height, hasVeranda } = currentSelection.customSize;
-    const totalLength = hasVeranda ? length + 0.6 : length;
-    const volume = width * totalLength * height;
-
-    // Base price calculation: R$ 1000 per cubic meter + base cost
-    const baseCustomPrice = Math.round(volume * 1000 + 1500);
-    total = Math.max(baseCustomPrice, 2000); // Minimum R$ 2000
-  }
-
-  // Add extra prices
-  currentSelection.extras.forEach((extra) => {
-    const checkbox = document.querySelector(`input[data-value="${extra}"]`);
-    if (checkbox) {
-      const extraPrice = parseInt(checkbox.dataset.price) || 0;
-      total += extraPrice;
-    }
-  });
-
-  // Add window and door prices
-  const activeWindow = document.querySelector(
-    '.option-btn.active[data-option="window"]'
-  );
-  if (activeWindow) {
-    const windowPrice = parseInt(activeWindow.dataset.price) || 0;
-    total += windowPrice;
-  }
-
-  const activeDoor = document.querySelector(
-    '.option-btn.active[data-option="door"]'
-  );
-  if (activeDoor) {
-    const doorPrice = parseInt(activeDoor.dataset.price) || 0;
-    total += doorPrice;
-  }
-
-  const totalPriceElement = document.getElementById("totalPrice");
-  if (totalPriceElement) {
-    totalPriceElement.textContent = total.toLocaleString("pt-BR");
-  }
-}
-
+// ========================
+// FINALIZAÇÃO DE COMPRA
+// ========================
 function finalizePurchase() {
-  const customerName = prompt("Digite seu nome:");
-  if (!customerName) return;
+  const config = currentConfig;
+  let message = "🏠 *PEDIDO DE CASINHA DE BONECA* 🏠\n\n";
 
-  // Ask for delivery preference
-  const deliveryChoice = confirm(
-    "Escolha a forma de entrega:\n\nOK = Entregar no meu endereço\nCancelar = Retirar na CM Restauração"
-  );
-
-  let deliveryInfo = "";
-
-  if (deliveryChoice) {
-    // Customer wants delivery - collect address
-    const street = prompt("Rua/Avenida:");
-    if (!street) return;
-
-    const number = prompt("Número:");
-    if (!number) return;
-
-    const neighborhood = prompt("Bairro:");
-    if (!neighborhood) return;
-
-    const city = prompt("Cidade:");
-    if (!city) return;
-
-    const complement = prompt(
-      "Complemento (opcional - apartamento, bloco, etc):"
-    );
-
-    deliveryInfo = `ENTREGA NO ENDEREÇO:\n`;
-    deliveryInfo += `${street}, ${number}\n`;
-    if (complement) deliveryInfo += `${complement}\n`;
-    deliveryInfo += `${neighborhood} - ${city}\n`;
-  } else {
-    // Customer will pick up
-    deliveryInfo = `RETIRADA NO LOCAL:\n`;
-    deliveryInfo += `Cliente retirará na CM Restauração de Móveis\n`;
-  }
-
-  // Format the order
-  let orderMessage = `PEDIDO CASINHA DE BONECA\n\n`;
-  orderMessage += `Cliente: ${customerName}\n\n`;
-  orderMessage += `DETALHES DO PEDIDO:\n`;
-
-  // Size with dimensions
-  if (currentSelection.size === "custom") {
-    const { width, length, height, hasVeranda } = currentSelection.customSize;
-    const totalLength = hasVeranda ? length + 0.6 : length;
-    orderMessage += `Tamanho: Personalizado\n`;
-    orderMessage += `Area Util: ${width.toFixed(1)}m x ${length.toFixed(1)}m\n`;
-    if (hasVeranda) {
-      orderMessage += `Com Varanda: ${width.toFixed(
-        1
-      )}m x ${totalLength.toFixed(1)}m\n`;
+  // Configuração de tamanho
+  if (config.size === "custom") {
+    const dims = config.customDimensions;
+    message += `📏 *Tamanho:* Personalizado\n`;
+    message += `   • Área Útil: ${dims.width}m × ${dims.length}m\n`;
+    message += `   • Altura: ${dims.height}m\n`;
+    if (dims.hasVeranda) {
+      message += `   • Com Varanda (+60cm)\n`;
     }
-    orderMessage += `Altura: ${height.toFixed(1)}m\n`;
   } else {
-    const sizeText = {
-      pequena:
-        "Pequena - Area Util: 1,2x1,2m | Com Varanda: 1,2x1,8m | Alt: 1,8m",
-      media: "Media - Area Util: 1,4x1,4m | Com Varanda: 1,4x2,0m | Alt: 2,0m",
-      grande:
-        "Grande - Area Util: 1,6x1,6m | Com Varanda: 1,6x2,2m | Alt: 2,0m",
-    };
-    orderMessage += `Tamanho: ${
-      sizeText[currentSelection.size] || currentSelection.size
+    message += `📏 *Tamanho:* ${
+      config.size.charAt(0).toUpperCase() + config.size.slice(1)
     }\n`;
-  }
-
-  // Palette information
-  if (currentSelection.palette === "custom" && currentSelection.customPalette) {
-    orderMessage += `Paleta: Personalizada\n`;
-    orderMessage += `Parede: ${currentSelection.customPalette.wall}\n`;
-    orderMessage += `Telhado: ${currentSelection.customPalette.roof}\n`;
-    orderMessage += `Janelas: ${currentSelection.customPalette.windows}\n`;
-    orderMessage += `Portas: ${currentSelection.customPalette.doors}\n`;
-    orderMessage += `Piso: ${currentSelection.customPalette.floor}\n`;
-  } else if (pantonePalettes[currentSelection.palette]) {
-    const palette = pantonePalettes[currentSelection.palette];
-    orderMessage += `Paleta: ${palette.description}\n`;
-  }
-
-  orderMessage += `Janela: ${
-    currentSelection.window.charAt(0).toUpperCase() +
-    currentSelection.window.slice(1)
-  }\n`;
-  orderMessage += `Porta: ${
-    currentSelection.door.charAt(0).toUpperCase() +
-    currentSelection.door.slice(1)
-  }\n`;
-
-  if (currentSelection.extras.length > 0) {
-    orderMessage += `Extras: ${currentSelection.extras
-      .map((extra) => {
-        const extraNames = {
-          varanda: "Varanda Ampliada",
-          jardim: "Jardim Lateral",
-          cerca: "Cercadinho Completo",
-          luz: "Kit Iluminacao LED",
-          mobilia: "Mobilia Interna",
-        };
-        return (
-          extraNames[extra] || extra.charAt(0).toUpperCase() + extra.slice(1)
-        );
-      })
-      .join(", ")}\n`;
-  }
-
-  const totalPriceElement = document.getElementById("totalPrice");
-  const totalPrice = totalPriceElement
-    ? totalPriceElement.textContent
-    : "2.200";
-  orderMessage += `\nTOTAL: R$ ${totalPrice}\n\n`;
-
-  // Add delivery information
-  orderMessage += deliveryInfo + `\n`;
-
-  orderMessage += `Prazo: 15-30 dias uteis\n`;
-  if (deliveryChoice) {
-    orderMessage += `Frete: A combinar conforme localizacao\n`;
-  }
-  orderMessage += `\nAguardo confirmacao!`;
-
-  // Send to WhatsApp
-  const whatsappURL = `https://wa.me/5543999809090?text=${encodeURIComponent(
-    orderMessage
-  )}`;
-  window.open(whatsappURL, "_blank");
-
-  alert("Pedido enviado! Redirecionando para o WhatsApp...");
-}
-
-// Initialize palette system
-document.addEventListener("DOMContentLoaded", function () {
-  // Initialize the first palette with default colors
-  loadPaletteToControls("candy");
-
-  // Add event listeners for custom size inputs
-  const customInputs = ["customWidth", "customLength", "customHeight"];
-  customInputs.forEach((inputId) => {
-    const input = document.getElementById(inputId);
-    if (input) {
-      input.addEventListener("input", updateCustomSizePreview);
+    if (config.hasVaranda) {
+      message += `   • Com Varanda\n`;
     }
-  });
-
-  // Initialize custom size preview
-  updateCustomSizePreview();
-
-  console.log("Sistema de paletas inicializado");
-
-  // Add WhatsApp click event
-  const whatsappContact = document.querySelector(".contact-item.clickable");
-  if (whatsappContact) {
-    whatsappContact.addEventListener("click", function () {
-      const customerName = prompt("Digite seu nome:");
-      if (!customerName) return;
-
-      const phoneNumber = "5543999809090";
-      const message = `Ola! Meu nome e ${customerName}. Gostaria de saber mais sobre os servicos da CM Restauracao de Moveis.`;
-      const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-        message
-      )}`;
-      window.open(whatsappURL, "_blank");
-    });
   }
-});
 
-// Toggle color customization section
-function toggleColorCustomization() {
-  const customizationPanel = document.getElementById("paletteCustomization");
-  const expandButton = document.querySelector(".btn-expand-colors");
-  const expandText = document.getElementById("expandColorsText");
-  const expandIcon = document.getElementById("expandColorsIcon");
-
-  if (customizationPanel.style.display === "none") {
-    customizationPanel.style.display = "block";
-    expandButton.classList.add("expanded");
-    expandText.textContent = "Fechar personalização";
-    expandIcon.classList.remove("fa-chevron-down");
-    expandIcon.classList.add("fa-chevron-up");
-  } else {
-    customizationPanel.style.display = "none";
-    expandButton.classList.remove("expanded");
-    expandText.textContent = "Não é o que queria? Escolha sua cor aqui";
-    expandIcon.classList.remove("fa-chevron-up");
-    expandIcon.classList.add("fa-chevron-down");
-  }
-}
-
-// ================================
-// SISTEMA DE FEEDBACK E AVALIAÇÃO
-// ================================
-
-let currentRating = 0;
-
-// Inicializar sistema de avaliação por estrelas
-document.addEventListener("DOMContentLoaded", function () {
-  initializeFeedbackSystem();
-});
-
-function initializeFeedbackSystem() {
-  const stars = document.querySelectorAll(".star-rating .star");
-  const ratingText = document.getElementById("ratingText");
-  const feedbackForm = document.getElementById("feedbackForm");
-
-  // Configurar eventos das estrelas
-  stars.forEach((star, index) => {
-    star.addEventListener("mouseenter", () => {
-      highlightStars(index + 1);
-      updateRatingText(index + 1);
-    });
-
-    star.addEventListener("mouseleave", () => {
-      highlightStars(currentRating);
-      updateRatingText(currentRating);
-    });
-
-    star.addEventListener("click", () => {
-      currentRating = index + 1;
-      selectStars(currentRating);
-      updateRatingText(currentRating);
-    });
-  });
-
-  // Configurar envio do formulário
-  if (feedbackForm) {
-    feedbackForm.addEventListener("submit", handleFeedbackSubmit);
-  }
-}
-
-function highlightStars(rating) {
-  const stars = document.querySelectorAll(".star-rating .star");
-  stars.forEach((star, index) => {
-    if (index < rating) {
-      star.classList.add("hovered");
-    } else {
-      star.classList.remove("hovered");
-    }
-  });
-}
-
-function selectStars(rating) {
-  const stars = document.querySelectorAll(".star-rating .star");
-  stars.forEach((star, index) => {
-    if (index < rating) {
-      star.classList.add("selected");
-    } else {
-      star.classList.remove("selected");
-    }
-  });
-}
-
-function updateRatingText(rating) {
-  const ratingText = document.getElementById("ratingText");
-  if (!ratingText) return;
-
-  const ratingTexts = {
-    0: "Clique nas estrelas para avaliar",
-    1: "⭐ Muito insatisfeito",
-    2: "⭐⭐ Insatisfeito",
-    3: "⭐⭐⭐ Neutro",
-    4: "⭐⭐⭐⭐ Satisfeito",
-    5: "⭐⭐⭐⭐⭐ Muito satisfeito",
+  // Paleta de cores
+  const paletteNames = {
+    candy: "🧁 Doce & Infantil",
+    nature: "🌿 Natureza & Tranquilidade",
+    classic: "🏛️ Clássico & Elegante",
+    vibrant: "🌈 Vibrante & Criativo",
+    minimal: "⚡ Minimalista & Moderno",
   };
+  message += `\n🎨 *Cores:* ${paletteNames[config.palette]}\n`;
 
-  ratingText.textContent = ratingTexts[rating] || ratingTexts[0];
+  if (config.customPalette) {
+    message += `   • Personalizada aplicada\n`;
+  }
+
+  // Opções
+  message += `\n🪟 *Janelas:* ${config.window}\n`;
+  message += `🚪 *Portas:* ${config.door}\n`;
+
+  // Extras
+  if (config.extras.length > 0) {
+    message += `\n✨ *Extras:*\n`;
+    const extraNames = {
+      jardim: "🌱 Jardim Lateral",
+      cerca: "🚧 Cercadinho Completo",
+      luz: "💡 Kit Iluminação LED",
+      mobilia: "🪑 Mobília Interna",
+    };
+    config.extras.forEach((extra) => {
+      message += `   • ${extraNames[extra]}\n`;
+    });
+  }
+
+  // Preço total
+  const totalElement = document.getElementById("totalPrice");
+  const total = totalElement ? totalElement.textContent : "0";
+  message += `\n💰 *TOTAL: R$ ${total}*\n\n`;
+  message += `📍 Quero fazer o pedido desta casinha!\n`;
+  message += `📞 Entraremos em contato para confirmar detalhes e prazo de entrega.`;
+
+  // Envia para WhatsApp
+  const whatsappUrl = `https://wa.me/5543999809090?text=${encodeURIComponent(
+    message
+  )}`;
+  window.open(whatsappUrl, "_blank");
 }
 
-function handleFeedbackSubmit(event) {
-  event.preventDefault();
+// ========================
+// FAQ DA CASINHA
+// ========================
+function initializeFAQ() {
+  // FAQ já funciona com a função toggleFaq existente
+}
 
-  // Validar se uma avaliação foi selecionada
-  if (currentRating === 0) {
+function toggleFaq(element) {
+  const faqItem = element.closest(".faq-item");
+  const answer = faqItem.querySelector(".faq-answer");
+  const icon = element.querySelector("i");
+
+  if (!faqItem || !answer || !icon) return;
+
+  // Toggle da resposta
+  if (answer.style.maxHeight && answer.style.maxHeight !== "0px") {
+    answer.style.maxHeight = "0px";
+    icon.style.transform = "rotate(0deg)";
+    faqItem.classList.remove("active");
+  } else {
+    answer.style.maxHeight = answer.scrollHeight + "px";
+    icon.style.transform = "rotate(180deg)";
+    faqItem.classList.add("active");
+  }
+}
+
+function initializeCustomization() {
+  // Event listeners para dimensões personalizadas
+  const dimensionInputs = [
+    "customWidth",
+    "customLength",
+    "customHeight",
+    "includeVeranda",
+  ];
+  dimensionInputs.forEach((id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.addEventListener("input", updateCustomDimensions);
+      element.addEventListener("change", updateCustomDimensions);
+    }
+  });
+}
+
+// ========================
+// FORMULÁRIO DE CONTATO (HOME)
+// ========================
+function initializeContactForm() {
+  const contactForm = document.getElementById("contactForm");
+  if (!contactForm) return;
+
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const name = this.querySelector('input[type="text"]').value;
+    const phone = this.querySelector('input[type="tel"]').value;
+    const service = this.querySelector("select").value;
+    const message = this.querySelector("textarea").value;
+
+    let whatsappMessage = `Olá! Gostaria de solicitar um orçamento:\n\n`;
+    whatsappMessage += `📋 *Dados do Cliente:*\n`;
+    whatsappMessage += `Nome: ${name}\n`;
+    whatsappMessage += `Telefone: ${phone}\n\n`;
+    whatsappMessage += `🔧 *Serviço Desejado:* ${service}\n\n`;
+    whatsappMessage += `💬 *Mensagem:*\n${message}`;
+
+    const whatsappUrl = `https://wa.me/5543999809090?text=${encodeURIComponent(
+      whatsappMessage
+    )}`;
+    window.open(whatsappUrl, "_blank");
+
+    // Reset form
+    this.reset();
+    alert("Redirecionando para o WhatsApp...");
+  });
+}
+
+// ========================
+// SISTEMA DE FEEDBACK
+// ========================
+function initializeFeedbackSystem() {
+  const feedbackForm = document.getElementById("feedbackForm");
+  if (!feedbackForm) return;
+
+  // Inicializa sistema de estrelas
+  initializeStarRating();
+
+  // Event listener para o formulário
+  feedbackForm.addEventListener("submit", handleFeedbackSubmission);
+}
+
+function initializeStarRating() {
+  const stars = document.querySelectorAll(".star-rating .star");
+  const ratingInput = document.getElementById("rating");
+
+  if (!stars.length || !ratingInput) return;
+
+  stars.forEach((star, index) => {
+    star.addEventListener("mouseover", () => highlightStars(index + 1));
+    star.addEventListener("mouseout", () => resetStars());
+    star.addEventListener("click", () => setRating(index + 1));
+  });
+
+  function highlightStars(rating) {
+    stars.forEach((star, index) => {
+      star.classList.toggle("hovered", index < rating);
+    });
+  }
+
+  function resetStars() {
+    const currentRating = parseInt(ratingInput.value) || 0;
+    stars.forEach((star, index) => {
+      star.classList.remove("hovered");
+      star.classList.toggle("selected", index < currentRating);
+    });
+  }
+
+  function setRating(rating) {
+    ratingInput.value = rating;
+    stars.forEach((star, index) => {
+      star.classList.toggle("selected", index < rating);
+    });
+  }
+}
+
+function handleFeedbackSubmission(e) {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+  const name = formData.get("name");
+  const rating = formData.get("rating");
+  const comment = formData.get("comment");
+
+  // Validação
+  if (!name || !rating || !comment) {
+    alert("Por favor, preencha todos os campos obrigatórios.");
+    return;
+  }
+
+  if (rating < 1 || rating > 5) {
     alert("Por favor, selecione uma avaliação de 1 a 5 estrelas.");
     return;
   }
 
-  // Coletar dados do formulário
-  const formData = {
-    rating: currentRating,
-    customerName: document.getElementById("customerName").value,
-    serviceType: document.getElementById("serviceType").value,
-    feedbackText: document.getElementById("feedbackText").value,
-    allowPublish: document.getElementById("allowPublish").checked,
-    date: new Date().toLocaleDateString("pt-BR"),
-  };
+  // Monta mensagem para WhatsApp
+  let whatsappMessage = `⭐ *AVALIAÇÃO DO SERVIÇO* ⭐\n\n`;
+  whatsappMessage += `👤 *Cliente:* ${name}\n`;
+  whatsappMessage += `⭐ *Avaliação:* ${rating}/5 estrelas\n\n`;
+  whatsappMessage += `💬 *Comentário:*\n${comment}\n\n`;
+  whatsappMessage += `📅 *Data:* ${new Date().toLocaleDateString("pt-BR")}`;
 
-  // Simular envio (você pode substituir por integração real)
-  sendFeedback(formData);
-}
-
-function sendFeedback(feedbackData) {
-  // Aqui você implementaria o envio real para um servidor
-  // Por enquanto, vamos simular e mostrar uma mensagem de sucesso
-
-  // Criar mensagem do WhatsApp
-  const customerName = feedbackData.customerName;
-  const rating = "⭐".repeat(feedbackData.rating);
-  const service = feedbackData.serviceType;
-  const comment = feedbackData.feedbackText;
-
-  const whatsappMessage =
-    `*AVALIAÇÃO DE CLIENTE*\n\n` +
-    `👤 Nome: ${customerName}\n` +
-    `⭐ Avaliação: ${rating} (${feedbackData.rating}/5)\n` +
-    `🔧 Serviço: ${service}\n` +
-    `💬 Comentário: ${comment}\n` +
-    `📅 Data: ${feedbackData.date}`;
-
-  const phoneNumber = "5543999809090";
-  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+  // Envia para WhatsApp
+  const whatsappUrl = `https://wa.me/5543999809090?text=${encodeURIComponent(
     whatsappMessage
   )}`;
+  window.open(whatsappUrl, "_blank");
 
-  // Mostrar mensagem de sucesso
-  alert(
-    "Obrigado pela sua avaliação! Você será redirecionado para o WhatsApp para enviar o feedback."
-  );
+  // Reset form e feedback visual
+  e.target.reset();
+  document.getElementById("rating").value = "";
+  document.querySelectorAll(".star").forEach((star) => {
+    star.classList.remove("selected");
+  });
 
-  // Abrir WhatsApp
-  window.open(whatsappURL, "_blank");
-
-  // Resetar formulário
-  resetFeedbackForm();
-
-  // Opcionalmente, adicionar a avaliação à exibição local
-  if (feedbackData.allowPublish) {
-    addReviewToDisplay(feedbackData);
-  }
-}
-
-function resetFeedbackForm() {
-  currentRating = 0;
-  selectStars(0);
-  updateRatingText(0);
-  document.getElementById("feedbackForm").reset();
-}
-
-function addReviewToDisplay(feedbackData) {
-  const reviewsGrid = document.getElementById("reviewsGrid");
-  if (!reviewsGrid) return;
-
-  const reviewCard = document.createElement("div");
-  reviewCard.className = "review-card";
-
-  const stars =
-    "⭐".repeat(feedbackData.rating) + "☆".repeat(5 - feedbackData.rating);
-  const firstName = feedbackData.customerName.split(" ")[0];
-  const lastInitial = feedbackData.customerName.split(" ")[1]
-    ? feedbackData.customerName.split(" ")[1][0] + "."
-    : "";
-  const anonymizedName = `${firstName} ${lastInitial}`;
-
-  reviewCard.innerHTML = `
-    <div class="review-header">
-      <div class="reviewer-info">
-        <span class="reviewer-name">${anonymizedName}</span>
-        <span class="service-tag">${getServiceDisplayName(
-          feedbackData.serviceType
-        )}</span>
-      </div>
-      <div class="review-stars">
-        ${generateStarHTML(feedbackData.rating)}
-      </div>
-    </div>
-    <p class="review-text">"${feedbackData.feedbackText}"</p>
-    <span class="review-date">${feedbackData.date}</span>
-  `;
-
-  // Adicionar no início da lista
-  reviewsGrid.insertBefore(reviewCard, reviewsGrid.firstChild);
-}
-
-function generateStarHTML(rating) {
-  let starsHTML = "";
-  for (let i = 1; i <= 5; i++) {
-    if (i <= rating) {
-      starsHTML += '<span class="star filled">&#9733;</span>';
-    } else {
-      starsHTML += '<span class="star">&#9733;</span>';
-    }
-  }
-  return starsHTML;
-}
-
-function getServiceDisplayName(serviceType) {
-  const serviceNames = {
-    restauracao: "Restauração",
-    montagem: "Montagem",
-    casinha: "Casinha de Boneca",
-    prateleiras: "Prateleiras",
-    outros: "Outros",
-  };
-  return serviceNames[serviceType] || serviceType;
+  alert("Obrigado pela sua avaliação! Redirecionando para o WhatsApp...");
 }
