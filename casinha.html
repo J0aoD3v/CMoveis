@@ -95,7 +95,7 @@
           </div>
           <div class="hero-image">
             <img
-              src="img/frente.jpg"
+              src="img/01.jpg"
               alt="Casinha de Boneca Principal"
               class="main-hero-img"
             />
@@ -112,7 +112,7 @@
           <div class="galeria-grid">
             <div class="galeria-item">
               <img
-                src="img/frente.jpg"
+                src="img/casinha1/frente_direita.jpg"
                 alt="Vista Frontal"
                 onclick="openModal(this)"
               />
@@ -123,7 +123,7 @@
             </div>
             <div class="galeria-item">
               <img
-                src="img/lateral.jpg"
+                src="img/casinha1/frente_lateral_esquerda.jpg"
                 alt="Vista Lateral"
                 onclick="openModal(this)"
               />
@@ -134,7 +134,7 @@
             </div>
             <div class="galeria-item">
               <img
-                src="img/interior.jpg"
+                src="img/casinha1/interior/interior_1.jpg"
                 alt="Interior"
                 onclick="openModal(this)"
               />
@@ -145,8 +145,30 @@
             </div>
             <div class="galeria-item">
               <img
-                src="img/detalhes.jpg"
-                alt="Detalhes"
+                src="img/casinha1/varanda/varanda_1.jpg"
+                alt="Varanda"
+                onclick="openModal(this)"
+              />
+              <div class="galeria-info">
+                <h4>Varanda Especial</h4>
+                <p>Área externa com acabamentos caprichados</p>
+              </div>
+            </div>
+            <div class="galeria-item">
+              <img
+                src="img/casinha1/interior/moveis/frente_moveis_aberto.jpg"
+                alt="Mobília"
+                onclick="openModal(this)"
+              />
+              <div class="galeria-info">
+                <h4>Mobília Interna</h4>
+                <p>Móveis funcionais em miniatura</p>
+              </div>
+            </div>
+            <div class="galeria-item">
+              <img
+                src="img/casinha1/porta.jpg"
+                alt="Detalhes da Porta"
                 onclick="openModal(this)"
               />
               <div class="galeria-info">
@@ -238,35 +260,42 @@
               <div class="main-image">
                 <img
                   id="mainImage"
-                  src="img/frente.jpg"
+                  src="img/casinha1/frente_direita.jpg"
                   alt="Casinha de Boneca"
                 />
               </div>
-              <div class="thumbnail-gallery">
+              <div class="thumbnail-gallery" id="thumbnailGallery">
+                <!-- Thumbnails iniciais (sempre visíveis) -->
                 <img
                   class="thumbnail active"
-                  src="img/frente.jpg"
+                  src="img/casinha1/frente_direita.jpg"
                   alt="Frente"
                   onclick="changeMainImage(this)"
                 />
                 <img
                   class="thumbnail"
-                  src="img/lateral.jpg"
+                  src="img/casinha1/frente_lateral_esquerda.jpg"
                   alt="Lateral"
                   onclick="changeMainImage(this)"
                 />
                 <img
                   class="thumbnail"
-                  src="img/interior.jpg"
+                  src="img/casinha1/interior/interior_1.jpg"
                   alt="Interior"
                   onclick="changeMainImage(this)"
                 />
-                <img
-                  class="thumbnail"
-                  src="img/detalhes.jpg"
-                  alt="Detalhes"
-                  onclick="changeMainImage(this)"
-                />
+
+                <!-- Botão Galeria Completa no lugar da 4ª foto -->
+                <div
+                  class="thumbnail show-more-btn"
+                  onclick="openFullGallery()"
+                >
+                  <div class="show-more-content">
+                    <i class="fas fa-images"></i>
+                    <span>Ver Galeria Completa</span>
+                    <small>50+ fotos e vídeos</small>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -1050,6 +1079,46 @@
         <span class="close">&times;</span>
         <img id="modalImage" src="" alt="" />
         <div id="modalCaption"></div>
+      </div>
+    </div>
+
+    <!-- Modal Galeria Completa -->
+    <div id="fullGalleryModal" class="full-gallery-modal">
+      <div class="gallery-header">
+        <h3>Galeria Completa - Casinha de Boneca</h3>
+        <button class="close-gallery" onclick="closeFullGallery()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="gallery-content">
+        <div class="gallery-grid" id="fullGalleryGrid">
+          <!-- Conteúdo será carregado via JavaScript -->
+        </div>
+      </div>
+
+      <!-- Modal para visualização individual -->
+      <div id="galleryViewModal" class="gallery-view-modal">
+        <button class="gallery-close-btn" onclick="closeGalleryView()">
+          <i class="fas fa-times"></i>
+        </button>
+        <button class="gallery-nav prev" onclick="prevGalleryItem()">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="gallery-nav next" onclick="nextGalleryItem()">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="gallery-view-content">
+          <img id="galleryViewImage" src="" alt="" style="display: none" />
+          <video id="galleryViewVideo" controls style="display: none">
+            <source src="" type="video/mp4" />
+            Seu navegador não suporta vídeos HTML5.
+          </video>
+        </div>
+
+        <div class="gallery-caption" id="galleryCaption"></div>
+        <div class="gallery-counter" id="galleryCounter"></div>
       </div>
     </div>
 

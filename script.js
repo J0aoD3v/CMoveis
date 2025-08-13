@@ -889,3 +889,350 @@ function handleFeedbackSubmission(e) {
 
   alert("Obrigado pela sua avaliação! Redirecionando para o WhatsApp...");
 }
+
+// ========================
+// GALERIA COMPLETA
+// ========================
+let currentGalleryIndex = 0;
+let galleryItems = [];
+
+function openFullGallery() {
+  const modal = document.getElementById("fullGalleryModal");
+  const grid = document.getElementById("fullGalleryGrid");
+
+  // Dados de todas as imagens e vídeos
+  galleryItems = [
+    // Fotos externas
+    {
+      type: "image",
+      src: "img/casinha1/frente_direita.jpg",
+      alt: "Frente Direita",
+    },
+    {
+      type: "image",
+      src: "img/casinha1/frente_lateral_esquerda.jpg",
+      alt: "Frente Lateral Esquerda",
+    },
+    { type: "image", src: "img/casinha1/lado_atras.jpg", alt: "Lado de Trás" },
+    { type: "image", src: "img/casinha1/porta.jpg", alt: "Porta de Entrada" },
+    {
+      type: "image",
+      src: "img/casinha1/detalhe_nome_frente.jpg",
+      alt: "Detalhe do Nome",
+    },
+
+    // Interior
+    {
+      type: "image",
+      src: "img/casinha1/interior/interior_1.jpg",
+      alt: "Interior Vista 1",
+    },
+    {
+      type: "image",
+      src: "img/casinha1/interior/interior_2.jpg",
+      alt: "Interior Vista 2",
+    },
+
+    // Varanda
+    {
+      type: "image",
+      src: "img/casinha1/varanda/varanda_1.jpg",
+      alt: "Varanda Vista 1",
+    },
+    {
+      type: "image",
+      src: "img/casinha1/varanda/varanda_2.jpg",
+      alt: "Varanda Vista 2",
+    },
+    {
+      type: "image",
+      src: "img/casinha1/varanda/varanda_3.jpg",
+      alt: "Varanda Vista 3",
+    },
+
+    // Móveis detalhados
+    {
+      type: "image",
+      src: "img/casinha1/interior/moveis/frente_moveis_aberto.jpg",
+      alt: "Móveis Frente Aberto",
+    },
+    {
+      type: "image",
+      src: "img/casinha1/interior/moveis/frente_moveis_fechado.jpg",
+      alt: "Móveis Frente Fechado",
+    },
+    {
+      type: "image",
+      src: "img/casinha1/interior/moveis/moveis_aberto.jpg",
+      alt: "Móveis Vista Geral Aberto",
+    },
+    {
+      type: "image",
+      src: "img/casinha1/interior/moveis/moveis_interior.jpg",
+      alt: "Interior dos Móveis",
+    },
+
+    // Cozinha
+    {
+      type: "image",
+      src: "img/casinha1/interior/moveis/geladeira.jpg",
+      alt: "Geladeira",
+    },
+    {
+      type: "image",
+      src: "img/casinha1/interior/moveis/geladeira_aberto.jpg",
+      alt: "Geladeira Aberta",
+    },
+    {
+      type: "image",
+      src: "img/casinha1/interior/moveis/fogao.jpg",
+      alt: "Fogão",
+    },
+    {
+      type: "image",
+      src: "img/casinha1/interior/moveis/pia_aberto.jpg",
+      alt: "Pia Aberta",
+    },
+    {
+      type: "image",
+      src: "img/casinha1/interior/moveis/pia_fogao.jpg",
+      alt: "Pia e Fogão",
+    },
+    {
+      type: "image",
+      src: "img/casinha1/interior/moveis/armario_aberto.jpg",
+      alt: "Armário Aberto",
+    },
+    {
+      type: "image",
+      src: "img/casinha1/interior/moveis/cima_fogao_pia_geladeira.jpg",
+      alt: "Vista Superior Cozinha",
+    },
+    {
+      type: "image",
+      src: "img/casinha1/interior/moveis/geladeira_fogao.jpg",
+      alt: "Geladeira e Fogão",
+    },
+    {
+      type: "image",
+      src: "img/casinha1/interior/moveis/geladeira_pia_fogao.jpg",
+      alt: "Cozinha Completa",
+    },
+
+    // Vídeos
+    { type: "video", src: "img/casinha1/videos/01.mp4", alt: "Vídeo Tour 1" },
+    { type: "video", src: "img/casinha1/videos/02.mp4", alt: "Vídeo Tour 2" },
+    { type: "video", src: "img/casinha1/videos/03.mp4", alt: "Vídeo Tour 3" },
+    { type: "video", src: "img/casinha1/videos/04.mp4", alt: "Vídeo Tour 4" },
+  ];
+
+  // Limpar grid
+  grid.innerHTML = "";
+
+  // Criar itens da galeria
+  galleryItems.forEach((item, index) => {
+    const galleryItem = document.createElement("div");
+    galleryItem.className = `gallery-item ${item.type}`;
+    galleryItem.onclick = () => openGalleryView(index);
+
+    if (item.type === "image") {
+      galleryItem.innerHTML = `<img src="${item.src}" alt="${item.alt}" loading="lazy" />`;
+    } else if (item.type === "video") {
+      galleryItem.innerHTML = `
+        <i class="fas fa-play-circle"></i>
+        <span>${item.alt}</span>
+      `;
+    }
+
+    grid.appendChild(galleryItem);
+  });
+
+  // Mostrar modal
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeFullGallery() {
+  const modal = document.getElementById("fullGalleryModal");
+  modal.classList.remove("active");
+  document.body.style.overflow = "auto";
+}
+
+function openGalleryView(index) {
+  currentGalleryIndex = index;
+  const modal = document.getElementById("galleryViewModal");
+  const img = document.getElementById("galleryViewImage");
+  const video = document.getElementById("galleryViewVideo");
+  const caption = document.getElementById("galleryCaption");
+  const counter = document.getElementById("galleryCounter");
+
+  const item = galleryItems[index];
+
+  // Resetar displays
+  img.style.display = "none";
+  video.style.display = "none";
+
+  if (item.type === "image") {
+    img.src = item.src;
+    img.alt = item.alt;
+    img.style.display = "block";
+  } else if (item.type === "video") {
+    video.querySelector("source").src = item.src;
+    video.load();
+    video.style.display = "block";
+  }
+
+  caption.textContent = item.alt;
+  counter.textContent = `${index + 1} de ${galleryItems.length}`;
+
+  modal.classList.add("active");
+}
+
+function closeGalleryView() {
+  const modal = document.getElementById("galleryViewModal");
+  const video = document.getElementById("galleryViewVideo");
+
+  // Pausar vídeo se estiver tocando
+  if (!video.paused) {
+    video.pause();
+  }
+
+  modal.classList.remove("active");
+}
+
+function prevGalleryItem() {
+  currentGalleryIndex =
+    currentGalleryIndex > 0 ? currentGalleryIndex - 1 : galleryItems.length - 1;
+  openGalleryView(currentGalleryIndex);
+}
+
+function nextGalleryItem() {
+  currentGalleryIndex =
+    currentGalleryIndex < galleryItems.length - 1 ? currentGalleryIndex + 1 : 0;
+  openGalleryView(currentGalleryIndex);
+}
+
+// Controles de teclado para galeria
+document.addEventListener("keydown", function (e) {
+  const galleryViewModal = document.getElementById("galleryViewModal");
+  const fullGalleryModal = document.getElementById("fullGalleryModal");
+
+  if (galleryViewModal.classList.contains("active")) {
+    switch (e.key) {
+      case "Escape":
+        closeGalleryView();
+        break;
+      case "ArrowLeft":
+        prevGalleryItem();
+        break;
+      case "ArrowRight":
+        nextGalleryItem();
+        break;
+    }
+  } else if (fullGalleryModal.classList.contains("active")) {
+    if (e.key === "Escape") {
+      closeFullGallery();
+    }
+  }
+});
+
+// ========================
+// GALERIA EXPANDIDA (ANTIGA)
+// ========================
+function toggleGalleryExpansion() {
+  const expandedThumbnails = document.getElementById("expandedThumbnails");
+  const showMoreBtn = document.getElementById("showMoreBtn");
+
+  if (!expandedThumbnails || !showMoreBtn) return;
+
+  const isExpanded = expandedThumbnails.style.display !== "none";
+
+  if (isExpanded) {
+    // Colapsar
+    expandedThumbnails.style.display = "none";
+    showMoreBtn.innerHTML = `
+      <div class="show-more-content">
+        <i class="fas fa-plus"></i>
+        <span>Ver Mais</span>
+        <small>20+ fotos</small>
+      </div>
+    `;
+  } else {
+    // Expandir
+    expandedThumbnails.style.display = "grid";
+    showMoreBtn.innerHTML = `
+      <div class="show-more-content">
+        <i class="fas fa-minus"></i>
+        <span>Ver Menos</span>
+        <small>Ocultar</small>
+      </div>
+    `;
+  }
+}
+
+function playVideo(videoSrc) {
+  // Cria um modal para reproduzir o vídeo
+  const modal = document.createElement("div");
+  modal.className = "video-modal";
+  modal.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    cursor: pointer;
+  `;
+
+  const video = document.createElement("video");
+  video.src = videoSrc;
+  video.controls = true;
+  video.autoplay = true;
+  video.style.cssText = `
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+  `;
+
+  const closeBtn = document.createElement("div");
+  closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+  closeBtn.style.cssText = `
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1001;
+  `;
+
+  modal.appendChild(video);
+  modal.appendChild(closeBtn);
+  document.body.appendChild(modal);
+
+  // Fechar modal
+  const closeModal = () => {
+    video.pause();
+    document.body.removeChild(modal);
+  };
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  closeBtn.addEventListener("click", closeModal);
+
+  // Esc para fechar
+  const handleEsc = (e) => {
+    if (e.key === "Escape") {
+      closeModal();
+      document.removeEventListener("keydown", handleEsc);
+    }
+  };
+
+  document.addEventListener("keydown", handleEsc);
+}
