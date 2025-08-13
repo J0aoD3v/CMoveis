@@ -62,8 +62,16 @@
       <section class="casinha-hero">
         <div class="container">
           <div class="hero-content">
-            <h1>Casinha de Boneca dos Sonhos</h1>
-            <p>
+            <div style="display: flex; align-items: center;">
+              <h1 style="margin: 0;">Casinhas de Boneca</h1>
+              <img
+                src="img/logo.png"
+                alt="Logo CM Restauração de Móveis"
+                class="casinha-logo"
+                style="max-width: 120px; height: auto; display: block; margin-left: 12px;"
+              />
+            </div>
+            <p style="margin-top: 8px;">
               Transforme a imaginação da sua filha em realidade com nossa
               casinha de boneca 100% personalizada. Cada detalhe pensado
               especialmente para ela!
@@ -156,7 +164,7 @@
             </div>
             <div class="galeria-item">
               <img
-                src="img/casinha1/interior/moveis/frente_moveis_aberto.jpg"
+                src="img/casinha1/interior/moveis/geladeira_pia_fogao.jpg"
                 alt="Mobília"
                 onclick="openModal(this)"
               />
@@ -311,7 +319,7 @@
                       <button
                         class="option-btn active"
                         data-option="size"
-                        data-value="grande"
+                        data-value="padrao"
                         data-price="3100"
                         data-price-varanda="3500"
                       >
@@ -321,12 +329,12 @@
                             <span class="price-display">R$ 3.100</span></strong
                           >
                           <div class="dimensions">
-                            <span>🏠 Área Útil: 1,60m × 1,60m</span>
+                            <span>🏠 Área Útil: 1,50m × 1,50m</span>
                             <span class="varanda-info">📏 Altura: 2,00m</span>
                           </div>
                           <div class="varanda-toggle-inline">
                             <label class="checkbox-option">
-                              <input type="checkbox" data-size="grande" />
+                              <input type="checkbox" data-size="padrao" />
                               <span>Incluir Varanda? (+R$ 400)</span>
                             </label>
                           </div>
@@ -342,7 +350,7 @@
                           <strong>Personalizado</strong>
                           <div class="dimensions">
                             <span>📐 Defina suas medidas</span>
-                            <span>💰 Preço sob consulta</span>
+                            <span>💰 Preço sob orçamento</span>
                           </div>
                         </div>
                       </button>
@@ -364,7 +372,7 @@
                           min="0.8"
                           max="3.0"
                           step="0.1"
-                          value="1.20"
+                          value="1.5"
                         />
                       </div>
                       <div class="dimension-group">
@@ -375,7 +383,7 @@
                           min="0.8"
                           max="3.0"
                           step="0.1"
-                          value="1.20"
+                          value="1.5"
                         />
                       </div>
                       <div class="dimension-group">
@@ -386,7 +394,7 @@
                           min="1.5"
                           max="2.5"
                           step="0.1"
-                          value="1.80"
+                          value="2.0"
                         />
                       </div>
                       <div class="dimension-group">
@@ -400,9 +408,9 @@
                       <h5>Preview das Dimensões:</h5>
                       <div class="size-preview-box">
                         <div class="preview-text" id="previewText">
-                          Área Útil: 1,20m × 1,20m<br />
-                          Com Varanda: 1,20m × 1,80m<br />
-                          Altura: 1,80m
+                          Área Útil: 1,50m × 1,50m<br />
+                          Com Varanda: 1,50m × 2,10m<br />
+                          Altura: 2,00m
                         </div>
                       </div>
                       <button
@@ -1123,5 +1131,7 @@
     </div>
 
     <script src="script.js"></script>
+  </body>
+</html>
   </body>
 </html>

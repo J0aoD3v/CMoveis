@@ -222,22 +222,22 @@ function initializeImageGallery() {
 // MARKETPLACE DA CASINHA
 // ========================
 let currentConfig = {
-  size: "grande",
+  size: "padrao",
   hasVaranda: false,
   palette: "candy",
   window: "simples",
   door: "simples",
   extras: [],
   customDimensions: {
-    width: 1.6,
-    length: 1.6,
+    width: 1.5,
+    length: 1.5,
     height: 2.0,
     hasVeranda: true,
   },
 };
 
 let priceData = {
-  grande: { base: 3100, varanda: 3500 },
+  padrao: { base: 3100, varanda: 3500 },
 };
 
 function initializeMarketplace() {
@@ -296,7 +296,7 @@ function handleOptionSelect(btn) {
   // Adiciona active ao botão clicado
   btn.classList.add("active");
 
-  // Atualiza configuração
+  // Atualiza configuração SEMPRE
   currentConfig[option] = value;
 
   // Lógica específica para tamanhos
@@ -315,14 +315,19 @@ function handleSizeChange(size) {
     updateCustomDimensions();
   } else if (customPanel) {
     customPanel.style.display = "none";
-    currentConfig.size = size;
   }
 
-  // Reset varanda checkboxes
+  // Atualiza a configuração do tamanho
+  currentConfig.size = size;
+
+  // Reset varanda checkboxes para o novo tamanho
   document.querySelectorAll("[data-size]").forEach((checkbox) => {
     checkbox.checked = false;
   });
   currentConfig.hasVaranda = false;
+
+  // Força atualização do preço depois do reset
+  updateTotalPrice();
 }
 
 function toggleVarandaInline(checkbox) {
@@ -361,16 +366,24 @@ function updateTotalPrice() {
 
   // Preço base do tamanho
   if (currentConfig.size === "custom") {
-    total = calculateCustomPrice();
+    totalElement.textContent = "Sob Consulta";
+    return;
   } else {
     const sizeData = priceData[currentConfig.size];
-    total = currentConfig.hasVaranda ? sizeData.varanda : sizeData.base;
+    if (sizeData) {
+      total = currentConfig.hasVaranda ? sizeData.varanda : sizeData.base;
+    } else {
+      console.error("Tamanho não encontrado:", currentConfig.size);
+      return;
+    }
   }
 
-  // Adiciona preço das opções
+  // Adiciona preço das opções, exceto o botão de tamanho (size)
   document.querySelectorAll(".option-btn.active[data-price]").forEach((btn) => {
-    const price = parseInt(btn.dataset.price) || 0;
-    total += price;
+    if (btn.dataset.option !== "size") {
+      const price = parseInt(btn.dataset.price) || 0;
+      total += price;
+    }
   });
 
   // Adiciona preço dos extras
@@ -433,11 +446,24 @@ function updateCustomDimensions() {
 
 function applyCustomSize() {
   updateCustomDimensions();
-  // Simula clique no botão personalizado para ativar
-  const customBtn = document.querySelector('[data-value="custom"]');
-  if (customBtn && !customBtn.classList.contains("active")) {
-    customBtn.click();
+
+  // Remove active de outros botões primeiro
+  const group = document.querySelector(".size-selector .option-buttons");
+  if (group) {
+    group
+      .querySelectorAll(".option-btn")
+      .forEach((b) => b.classList.remove("active"));
   }
+
+  // Adiciona active ao botão personalizado
+  const customBtn = document.querySelector('[data-value="custom"]');
+  if (customBtn) {
+    customBtn.classList.add("active");
+  }
+
+  // Atualiza a configuração
+  currentConfig.size = "custom";
+  updateTotalPrice();
 }
 
 // ========================
@@ -669,9 +695,11 @@ function finalizePurchase() {
       message += `   • Com Varanda (+60cm)\n`;
     }
   } else {
-    message += `📏 *Tamanho:* ${
-      config.size.charAt(0).toUpperCase() + config.size.slice(1)
-    }\n`;
+    let nomeTamanho =
+      config.size === "padrao"
+        ? "Padrão"
+        : config.size.charAt(0).toUpperCase() + config.size.slice(1);
+    message += `📏 *Tamanho:* ${nomeTamanho}\n`;
     if (config.hasVaranda) {
       message += `   • Com Varanda\n`;
     }
@@ -712,9 +740,16 @@ function finalizePurchase() {
   // Preço total
   const totalElement = document.getElementById("totalPrice");
   const total = totalElement ? totalElement.textContent : "0";
-  message += `\n💰 *TOTAL: R$ ${total}*\n\n`;
-  message += `📍 Quero fazer o pedido desta casinha!\n`;
-  message += `📞 Entraremos em contato para confirmar detalhes e prazo de entrega.`;
+
+  if (config.size === "custom") {
+    message += `\n💰 *TOTAL: ${total}*\n\n`;
+    message += `📍 Quero solicitar orçamento para esta casinha personalizada!\n`;
+    message += `📞 Entraremos em contato para calcular o valor exato e prazo de entrega.`;
+  } else {
+    message += `\n💰 *TOTAL: R$ ${total}*\n\n`;
+    message += `📍 Quero fazer o pedido desta casinha!\n`;
+    message += `📞 Entraremos em contato para confirmar detalhes e prazo de entrega.`;
+  }
 
   // Envia para WhatsApp
   const whatsappUrl = `https://wa.me/5543999809090?text=${encodeURIComponent(
